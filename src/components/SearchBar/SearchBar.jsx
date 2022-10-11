@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
 import SearchBarMenuModal from './SearchBarMenu';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 export default function SearchBar() {
   const [isSearchBarMenuOpen, setIsMenuSearchBarOpen] = useState(false);
@@ -48,6 +48,7 @@ export default function SearchBar() {
       {isSearchBarMenuOpen && (
         <SearchBarMenuModal
           history={history}
+          search={search}
           closeSearchMenu={() => setIsMenuSearchBarOpen(false)}
         />
       )}
