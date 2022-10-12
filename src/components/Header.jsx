@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import CategoriesMenu from './CategoriesMenu';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import Logo from '../assets/logo.png';
-import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar';
-import { useMediaQuery } from 'react-responsive';
+import CategoriesMenu from './CategoriesMenu';
+import SearchBar from './SearchBar/SearchBar';
 import { deviceSizes as ds } from '../helpers/variables';
+import { useMediaQuery } from 'react-responsive';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Header({ categories, products }) {
   const isLaptop = useMediaQuery({ query: `(min-width: ${ds.md})` });
