@@ -33,7 +33,10 @@ export default function SearchBar() {
         </form>
         <div className='bg-white absolute right-1 top-1/2 -translate-y-1/2 flex gap-2 items-center'>
           <AiOutlineClose
-            onClick={() => setIsMenuSearchBarOpen(false)}
+            onClick={() => {
+              setIsMenuSearchBarOpen(false);
+              setSearch('');
+            }}
             className='cursor-pointer'
             size={20}
           />
