@@ -4,7 +4,7 @@ import { useContext, useMemo } from 'react';
 import { EcommerceContext } from '../../../App';
 import { getRandomProducts } from '../../../helpers/functions';
 
-export default function InitialMenu({ history }) {
+export default function InitialMenu({ history, cleanHistory }) {
   const [products] = useContext(EcommerceContext);
 
   const firstFiveHistoryItems = useMemo(
@@ -36,7 +36,9 @@ export default function InitialMenu({ history }) {
         <div>
           <div className='flex justify-between items-center mt-2'>
             <div className='font-semibold'>SEARCH HISTORY</div>
-            <button className='underline'>Clean History</button>
+            <button className='underline' onClick={cleanHistory}>
+              Clean History
+            </button>
           </div>
           <ul>
             {firstFiveHistoryItems.map((item, index) => (
