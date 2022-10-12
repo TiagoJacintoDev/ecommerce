@@ -8,10 +8,14 @@
   }
 }
 
-.search-bar-container {
-  @apply w-full xl:max-w-[1150px];
-}
-
 .search-link {
   @apply flex gap-2 items-center hover:bg-gray-100 hover:text-blue-700 hover:underline p-2;
+}
+
+.search-bar-menu {
+  @apply absolute top-full left-1/2 -translate-x-1/2 w-full xl:max-w-[1150px] p-5 z-10 bg-white rounded-b-xl border border-accent grid grid-flow-col auto-cols-fr gap-10;
+}
+
+.authentication-button {
+  @apply disabled:bg-gray-400 bg-accent w-full p-4 my-2 text-white rounded-lg font-semibold text-xl transition-colors duration-500;
 }
