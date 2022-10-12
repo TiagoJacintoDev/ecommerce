@@ -8,6 +8,10 @@
   }
 }
 
+.search-bar-container {
+  @apply w-full xl:max-w-[1150px];
+}
+
 .search-link {
   @apply flex gap-2 items-center hover:bg-gray-100 hover:text-blue-700 hover:underline p-2;
 }
