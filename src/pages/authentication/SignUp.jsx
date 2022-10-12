@@ -1,33 +1,33 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserAuth } from '../context/AuthContext';
+import { UserAuth } from '../../context/AuthContext';
 
-export default function Login() {
+export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const { logIn } = UserAuth();
+  const { createUser } = UserAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setError('');
     try {
-      await logIn(email, password);
+      await createUser(email, password);
       navigate('/account');
     } catch (e) {
       setError(e.message);
     }
   }
-
   return (
     <div className='max-w-[700px] mx-auto my-16 p-4'>
       <div>
-        <h1 className='text-2xl font-bold py-2'>Log In</h1>
+        <h1 className='text-2xl font-bold py-2'>Sign Up With Your Email</h1>
         <p className='py-2'>
-          Don't have an account?{' '}
-          <Link to='/signup' className='underline'>
-            Sign up.
+          Already have an account?{' '}
+          <Link to='/login' className='underline'>
+            Log in.
           </Link>
         </p>
         <form onSubmit={handleSubmit}>
@@ -55,8 +55,8 @@ export default function Login() {
               id='password'
             />
           </div>
-          <button className='authentication-button' disabled={!(email && password)}>
-            Log In
+          <button disabled={!(email && password)} className='authentication-button'>
+            SIGN UP
           </button>
         </form>
       </div>

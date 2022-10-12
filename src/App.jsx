@@ -4,9 +4,9 @@ import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Category from './pages/Category';
 import Home from './pages/Home';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import Account from './pages/Account';
+import Login from './pages/authentication/Login';
+import SignUp from './pages/authentication/SignUp';
+import Account from './pages/authentication/Account';
 import { api } from './services/api';
 import ProtectedRoute from './components/helper/ProtectedRoute';
 
