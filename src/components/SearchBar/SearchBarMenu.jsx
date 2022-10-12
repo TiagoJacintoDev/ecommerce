@@ -10,9 +10,9 @@ export default function SearchBarMenu({ closeSearchMenu, history, search }) {
       />
       <div className='container left-1/2 -translate-x-1/2 absolute top-full p-5 z-10 bg-white rounded-b-xl border border-accent'>
         {search ? (
-          <SearchingMenu />
+          <SearchingMenu search={search} />
         ) : (
-          <InitialMenu closeSearchMenu={closeSearchMenu} history={history} />
+          <InitialMenu history={history} />
         )}
       </div>
     </>

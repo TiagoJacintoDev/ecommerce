@@ -4,7 +4,7 @@ import { useContext, useMemo, useState } from 'react';
 import { EcommerceContext } from '../../../App';
 import { getRandomProducts } from '../../../helpers/functions';
 
-export default function InitialMenu({ closeSearchMenu, history }) {
+export default function InitialMenu({ history }) {
   const [products] = useContext(EcommerceContext);
 
   const firstFiveHistoryItems = useMemo(
@@ -31,7 +31,7 @@ export default function InitialMenu({ closeSearchMenu, history }) {
             <Link
               to={`/products/${product.title}`}
               key={product.id}
-              className='flex gap-2 items-center hover:bg-gray-100 hover:text-blue-700 hover:underline p-2'
+              className='search-link'
             >
               <AiOutlineSearch style={{ minHeight: '20px', minWidth: '20px' }} />
               <h1>{product.title}</h1>
@@ -52,12 +52,11 @@ export default function InitialMenu({ closeSearchMenu, history }) {
         <div className='[&>*:not(:last-child)]:mb-10'>
           {fiveRandomProducts.map(product => (
             <div key={product.id} className='flex gap-6 items-center'>
-              <Link onClick={closeSearchMenu} to={`/products/${product.title}`}>
+              <Link to={`/products/${product.title}`}>
                 <img className='max-h-20' src={product.image} />
               </Link>
               <div className='flex flex-col'>
                 <Link
-                  onClick={closeSearchMenu}
                   to={`/products/${product.title}`}
                   className='hover:underline hover:text-blue-700'
                 >
