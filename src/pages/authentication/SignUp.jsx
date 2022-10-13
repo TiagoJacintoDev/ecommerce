@@ -1,17 +1,24 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
+import useFormValidation from '../../hooks/useFormValidation';
 
 export default function SignUp() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const { createUser } = UserAuth();
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    errors,
+    emailPattern,
+    passwordPattern,
+    defaultRequiredMessage,
+  } = useFormValidation();
+
+  async function onSubmit({ email, password }) {
     setError('');
     try {
       await createUser(email, password);
@@ -30,34 +37,40 @@ export default function SignUp() {
             Log in.
           </Link>
         </p>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className='flex flex-col py-2'>
             <label className='py-2 font-medium' htmlFor='email'>
               Email Address
             </label>
             <input
-              onChange={e => setEmail(e.target.value)}
-              className='border p-3'
+              {...register('email', {
+                required: defaultRequiredMessage,
+                pattern: { value: emailPattern, message: 'Email is invalid' },
+              })}
+              className='authentication-input'
               type='email'
               name='email'
               id='email'
             />
+            {errors?.email?.message}
           </div>
           <div className='flex flex-col py-2'>
             <label className='py-2 font-medium' htmlFor='password'>
               Password
             </label>
             <input
-              onChange={e => setPassword(e.target.value)}
-              className='border p-3'
+              {...register('password', {
+                required: defaultRequiredMessage,
+                pattern: { value: passwordPattern, message: 'Password is invalid' },
+              })}
+              className='authentication-input'
               type='password'
-              name='paswword'
+              name='password'
               id='password'
             />
+            {errors?.password?.message}
           </div>
-          <button disabled={!(email && password)} className='authentication-button'>
-            SIGN UP
-          </button>
+          <button className='authentication-button'>SIGN UP</button>
         </form>
       </div>
     </div>
