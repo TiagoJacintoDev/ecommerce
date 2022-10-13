@@ -6,9 +6,10 @@ import Category from './pages/Category';
 import Home from './pages/Home';
 import Login from './pages/authentication/Login';
 import SignUp from './pages/authentication/SignUp';
-import Account from './pages/authentication/Account';
+import Account from './pages/authentication/account/Account';
 import { api } from './services/api';
 import ProtectedRoute from './components/helper/ProtectedRoute';
+import AccountSettings from './pages/authentication/account/AccountSettings';
 
 export const EcommerceContext = createContext();
 
@@ -39,6 +40,8 @@ export default function App() {
   if (ecommerceData[0].isLoading || ecommerceData[1].isLoading)
     return <h1>Loading...</h1>;
 
+  // If path is /account render Account Sidebar
+
   return (
     <EcommerceContext.Provider value={ecommerceData}>
       <Header />
@@ -50,7 +53,21 @@ export default function App() {
           path='/account'
           element={
             <ProtectedRoute>
-              <Account />
+              <>
+                Sidebar
+                <Account />
+              </>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/account/:settings'
+          element={
+            <ProtectedRoute>
+              <>
+                Sidebar
+                <AccountSettings />
+              </>
             </ProtectedRoute>
           }
         />

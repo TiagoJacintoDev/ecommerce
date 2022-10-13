@@ -7,8 +7,10 @@ import { deviceSizes as ds } from '../helpers/variables';
 import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { UserAuth } from '../context/AuthContext';
 
-export default function Header({ categories, products }) {
+export default function Header() {
+  const { user } = UserAuth();
   const isLaptop = useMediaQuery({ query: `(min-width: ${ds.md})` });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
@@ -25,15 +27,21 @@ export default function Header({ categories, products }) {
           <img className='h-full' src={Logo} />
         </Link>
         {isLaptop && <SearchBar />}
-        <div className='flex gap-4 items-center font-semibold'>
-          <Link to='/login' className=''>
-            Login
+        {user ? (
+          <Link to='/account'>
+            <MdAccountCircle size={38} />
           </Link>
-          <span className='cursor-default'>|</span>
-          <Link to='/signup' className='font-semibold'>
-            Sign Up
-          </Link>
-        </div>
+        ) : (
+          <div className='flex gap-4 items-center font-semibold'>
+            <Link to='/login' className=''>
+              Login
+            </Link>
+            <span className='cursor-default'>|</span>
+            <Link to='/signup' className='font-semibold'>
+              Sign Up
+            </Link>
+          </div>
+        )}
         {isMenuOpen && <CategoriesMenu closeMenu={() => setIsMenuOpen(false)} />}
       </div>
     </div>

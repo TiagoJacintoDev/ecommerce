@@ -8,13 +8,15 @@ export default function useFormValidation() {
 
   const {
     register,
-    formState: { errors },
+    reset,
     handleSubmit,
+    formState: { errors },
   } = useForm({ mode: 'onBlur' });
 
   return {
     register,
     handleSubmit,
+    reset,
     errors,
     emailPattern,
     passwordPattern,
