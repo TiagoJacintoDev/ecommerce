@@ -1,6 +1,6 @@
 import { useQueries } from '@tanstack/react-query';
 import { createContext } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useMatch } from 'react-router-dom';
 import Header from './components/Header';
 import Category from './pages/Category';
 import Home from './pages/Home';
@@ -9,7 +9,7 @@ import SignUp from './pages/authentication/SignUp';
 import Account from './pages/authentication/account/Account';
 import { api } from './services/api';
 import ProtectedRoute from './components/helper/ProtectedRoute';
-import AccountSettings from './pages/authentication/account/AccountSettings';
+import ChangeAccountData from './pages/authentication/account/changeAccountData/ChangeAccountData';
 
 export const EcommerceContext = createContext();
 
@@ -40,8 +40,6 @@ export default function App() {
   if (ecommerceData[0].isLoading || ecommerceData[1].isLoading)
     return <h1>Loading...</h1>;
 
-  // If path is /account render Account Sidebar
-
   return (
     <EcommerceContext.Provider value={ecommerceData}>
       <Header />
@@ -53,21 +51,19 @@ export default function App() {
           path='/account'
           element={
             <ProtectedRoute>
-              <>
-                Sidebar
+              <div className='account-container'>
                 <Account />
-              </>
+              </div>
             </ProtectedRoute>
           }
         />
         <Route
-          path='/account/:settings'
+          path='/account/userdata'
           element={
             <ProtectedRoute>
-              <>
-                Sidebar
-                <AccountSettings />
-              </>
+              <div className='account-container'>
+                <ChangeAccountData />
+              </div>
             </ProtectedRoute>
           }
         />

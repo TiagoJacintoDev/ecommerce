@@ -27,3 +27,7 @@
 .absolute-center {
   @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
 }
+
+.account-container {
+  @apply grid auto-cols-auto sm:grid-flow-col justify-center gap-6 container mx-auto my-10;
+}
