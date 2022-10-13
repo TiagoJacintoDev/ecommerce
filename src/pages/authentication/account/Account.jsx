@@ -9,7 +9,7 @@ export default function Account() {
   return (
     <>
       <AccountSidebar />
-      <div>
+      <div className='w-[300px]'>
         <h1 className='text-2xl font-bold pb-4'>Account</h1>
         <p>User Email: {user?.email}</p>
 

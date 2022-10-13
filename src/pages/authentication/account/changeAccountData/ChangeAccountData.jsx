@@ -6,7 +6,7 @@ export default function ChangeAccountData() {
   return (
     <>
       <AccountSidebar />
-      <div>
+      <div className='w-[300px]'>
         <h1 className='text-2xl font-bold pb-2'>User Settings</h1>
         <ChangeEmail />
         <ChangePassword />

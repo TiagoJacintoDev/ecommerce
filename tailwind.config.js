@@ -8,6 +8,7 @@ module.exports = {
         'accent-light': '#FF8800',
         'dark-blue': '#251B37',
         'dark-blue-lighten': '#372948',
+        'light-gray': '#F4F5F9',
       },
     },
   },
