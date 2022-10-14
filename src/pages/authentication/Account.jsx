@@ -1,6 +1,6 @@
-import { UserAuth } from '../../../context/AuthContext';
+import { UserAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import AccountSidebar from '../../../components/AccountSidebar';
+import AccountSidebar from '../../components/AccountSidebar';
 
 export default function Account() {
   const { user, logout } = UserAuth();

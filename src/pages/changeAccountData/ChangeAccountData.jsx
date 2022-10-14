@@ -1,4 +1,4 @@
-import AccountSidebar from '../../../../components/AccountSidebar';
+import AccountSidebar from '../../components/AccountSidebar';
 import ChangeEmail from './ChangeEmail';
 import ChangePassword from './ChangePassword';
 

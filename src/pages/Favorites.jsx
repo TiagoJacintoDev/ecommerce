@@ -1,4 +1,4 @@
-import AccountSidebar from '../../../components/AccountSidebar';
+import AccountSidebar from '../components/AccountSidebar';
 import { AiFillHeart } from 'react-icons/ai';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { useMemo, useState } from 'react';

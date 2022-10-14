@@ -1,17 +1,17 @@
 import { useQueries } from '@tanstack/react-query';
+import { useLocalStorage } from './hooks/useLocalStorage';
 import { createContext } from 'react';
 import { Route, Routes, useMatch } from 'react-router-dom';
+import { api } from './services/api';
 import Header from './components/Header';
 import Category from './pages/Category';
 import Home from './pages/Home';
 import Login from './pages/authentication/Login';
 import SignUp from './pages/authentication/SignUp';
-import Account from './pages/authentication/account/Account';
-import { api } from './services/api';
+import Account from './pages/authentication/Account';
 import ProtectedRoute from './components/helper/ProtectedRoute';
-import ChangeAccountData from './pages/authentication/account/changeAccountData/ChangeAccountData';
-import { useLocalStorage } from './hooks/useLocalStorage';
-import Favorites from './pages/authentication/account/Favorites';
+import ChangeAccountData from './pages/changeAccountData/ChangeAccountData';
+import Favorites from './pages/Favorites';
 
 export const EcommerceContext = createContext();
 

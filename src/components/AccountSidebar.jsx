@@ -16,11 +16,11 @@ export default function AccountSidebar() {
           <BsFillPersonFill size={24} />
           Change Account Data
         </Link>
-        <Link to='/bought-products' className='flex items-center gap-2'>
+        <Link to='/account/bought-products' className='flex items-center gap-2'>
           <FaShoppingCart size={ICON_SIZE} />
           Bought Products
         </Link>
-        <Link to='/favorites' className='flex items-center gap-2'>
+        <Link to='/account/favorites' className='flex items-center gap-2'>
           <AiFillHeart size={ICON_SIZE} />
           Favorites
         </Link>
