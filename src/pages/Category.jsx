@@ -4,7 +4,7 @@ import { EcommerceContext } from '../App';
 import { useContext, useMemo } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 
-export default function Category() {
+export default function Category({ favorites, setFavorites }) {
   const { category } = useParams();
   const [products] = useContext(EcommerceContext);
   const itemsInCurrentCategory = useMemo(() =>
@@ -22,10 +22,21 @@ export default function Category() {
             id={item.id}
             className='flex flex-col gap-3 p-3 bg-white shadow-2xl rounded-lg'
           >
-            <AiOutlineHeart
-              size={25}
-              className='text-accent cursor-pointer self-end'
-            />
+            {favorites.includes(item.id) ? (
+              <AiFillHeart
+                onClick={() =>
+                  setFavorites(lastState => lastState.filter(fav => fav !== item.id))
+                }
+                size={25}
+                className='text-accent cursor-pointer self-end'
+              />
+            ) : (
+              <AiOutlineHeart
+                onClick={() => setFavorites(lastState => [...lastState, item.id])}
+                size={25}
+                className='text-accent cursor-pointer self-end'
+              />
+            )}
             <Link className='[&>*]:mb-3'>
               <img src={item.image} className='object-contain aspect-square p-1' />
               <p className='text-center'>{item.title}</p>

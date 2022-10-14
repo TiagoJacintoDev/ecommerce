@@ -10,6 +10,7 @@ import Account from './pages/authentication/account/Account';
 import { api } from './services/api';
 import ProtectedRoute from './components/helper/ProtectedRoute';
 import ChangeAccountData from './pages/authentication/account/changeAccountData/ChangeAccountData';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 export const EcommerceContext = createContext();
 
@@ -36,6 +37,8 @@ export default function App() {
       },
     ],
   });
+
+  const [favorites, setFavorites] = useLocalStorage();
 
   if (ecommerceData[0].isLoading || ecommerceData[1].isLoading)
     return <h1>Loading...</h1>;
@@ -68,7 +71,10 @@ export default function App() {
           }
         />
 
-        <Route path='/categories/:category' element={<Category />} />
+        <Route
+          path='/categories/:category'
+          element={<Category favorites={favorites} setFavorites={setFavorites} />}
+        />
       </Routes>
     </EcommerceContext.Provider>
   );
