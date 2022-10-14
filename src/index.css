@@ -32,6 +32,10 @@
   @apply grid auto-cols-auto sm:grid-flow-col justify-center gap-6 container mx-auto my-10;
 }
 
+.pagination-button {
+  @apply rounded-md h-[40px] w-[40px]  font-semibold text-xl;
+}
+
 *,
 *::before,
 *::after {
