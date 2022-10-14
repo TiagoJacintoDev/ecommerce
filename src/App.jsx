@@ -11,6 +11,7 @@ import { api } from './services/api';
 import ProtectedRoute from './components/helper/ProtectedRoute';
 import ChangeAccountData from './pages/authentication/account/changeAccountData/ChangeAccountData';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import Favorites from './pages/authentication/account/Favorites';
 
 export const EcommerceContext = createContext();
 
@@ -66,6 +67,20 @@ export default function App() {
             <ProtectedRoute>
               <div className='account-container'>
                 <ChangeAccountData />
+              </div>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/account/favorites'
+          element={
+            <ProtectedRoute>
+              <div className='account-container'>
+                <Favorites
+                  favorites={favorites}
+                  setFavorites={setFavorites}
+                  ecommerceData={ecommerceData}
+                />
               </div>
             </ProtectedRoute>
           }
