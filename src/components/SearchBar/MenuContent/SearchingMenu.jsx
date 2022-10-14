@@ -2,7 +2,7 @@ import { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { EcommerceContext } from '../../../App';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { LowerFirst } from '../../../helpers/functions';
+import { lowerFirst } from '../../../helpers/functions';
 import NoResultsFound from './NoResultsFound';
 
 export default function SearchingMenu({ search }) {
@@ -57,7 +57,7 @@ export default function SearchingMenu({ search }) {
           to={`/category/${mostCommonCategory}`}
           className='search-link ml-4 hover:font-semibold'
         >
-          In {LowerFirst(mostCommonCategory)}
+          In {lowerFirst(mostCommonCategory)}
         </Link>
         {highestRatedProducts.map(product => (
           <Link

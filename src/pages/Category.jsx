@@ -1,8 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
-import { LowerFirst } from '../helpers/functions';
+import { lowerFirst, toLink } from '../helpers/functions';
 import { EcommerceContext } from '../App';
 import { useContext, useMemo } from 'react';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import FavoriteButton from '../components/FavoriteButton';
 
 export default function Category({ favorites, setFavorites }) {
   const { category } = useParams();
@@ -14,33 +14,31 @@ export default function Category({ favorites, setFavorites }) {
   );
   return (
     <div className='container mx-auto py-8'>
-      <h1 className='text-2xl font-bold mb-3'>{LowerFirst(category)}</h1>
+      <h1 className='text-2xl font-bold mb-3'>{lowerFirst(category)}</h1>
       <p className='mb-5'>{itemsInCurrentCategory.length} Products Found</p>
       <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10'>
-        {itemsInCurrentCategory.map(item => (
+        {itemsInCurrentCategory.map(product => (
           <div
-            id={item.id}
+            key={product.id}
             className='flex flex-col gap-3 p-3 bg-white shadow-2xl rounded-lg'
           >
-            {favorites.includes(item.id) ? (
-              <AiFillHeart
-                onClick={() =>
-                  setFavorites(lastState => lastState.filter(fav => fav !== item.id))
-                }
-                size={25}
-                className='text-accent cursor-pointer self-end'
+            <span className='self-end'>
+              <FavoriteButton
+                id={product.id}
+                favorites={favorites}
+                setFavorites={setFavorites}
               />
-            ) : (
-              <AiOutlineHeart
-                onClick={() => setFavorites(lastState => [...lastState, item.id])}
-                size={25}
-                className='text-accent cursor-pointer self-end'
+            </span>
+            <Link
+              to={`/product/${product.id}/${toLink(product.title)}`}
+              className='[&>*]:mb-3'
+            >
+              <img
+                src={product.image}
+                className='object-contain aspect-square p-1'
               />
-            )}
-            <Link className='[&>*]:mb-3'>
-              <img src={item.image} className='object-contain aspect-square p-1' />
-              <p className='text-center'>{item.title}</p>
-              <p className='text-center text-xl font-bold'>${item.price}</p>
+              <p className='text-center'>{product.title}</p>
+              <p className='text-center text-xl font-bold'>${product.price}</p>
             </Link>
           </div>
         ))}
