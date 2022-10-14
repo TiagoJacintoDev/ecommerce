@@ -36,6 +36,18 @@
   @apply rounded-md h-[40px] w-[40px]  font-semibold text-xl;
 }
 
+.purchase-button {
+  @apply flex gap-2 items-center justify-center rounded-lg py-2 w-full font-semibold transition-all duration-500;
+}
+
+.add-to-cart-button {
+  @apply bg-white hover:bg-accent text-accent hover:text-white border border-accent;
+}
+
+.buy-now-button {
+  @apply bg-accent hover:bg-accent-light text-white font-semibold;
+}
+
 *,
 *::before,
 *::after {

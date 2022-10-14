@@ -12,6 +12,7 @@ import Account from './pages/authentication/Account';
 import ProtectedRoute from './components/helper/ProtectedRoute';
 import ChangeAccountData from './pages/changeAccountData/ChangeAccountData';
 import Favorites from './pages/Favorites';
+import Product from './pages/Product';
 
 export const EcommerceContext = createContext();
 
@@ -86,6 +87,16 @@ export default function App() {
           }
         />
 
+        <Route
+          path='/product/:id/:product'
+          element={
+            <Product
+              favorites={favorites}
+              setFavorites={setFavorites}
+              ecommerceData={ecommerceData}
+            />
+          }
+        />
         <Route
           path='/categories/:category'
           element={<Category favorites={favorites} setFavorites={setFavorites} />}
