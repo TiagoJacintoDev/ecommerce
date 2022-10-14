@@ -1,7 +1,6 @@
 import AccountSidebar from '../../../components/AccountSidebar';
 import { AiFillHeart } from 'react-icons/ai';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
-<<<<<<< HEAD
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -20,16 +19,6 @@ export default function Favorites({ favorites, setFavorites, ecommerceData }) {
         favorites.some(fav => fav === product.id)
       ),
     [favorites, ecommerceData]
-=======
-import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
-
-export default function Favorites({ favorites, setFavorites, ecommerceData }) {
-  const favoriteProducts = useMemo(() =>
-    ecommerceData[0].data.filter(product =>
-      favorites.some(fav => fav === product.id)
-    )
->>>>>>> 36f9aa6ad179fffdfe0c5dba99de7d421d0bfae9
   );
   return (
     <>
@@ -38,7 +27,6 @@ export default function Favorites({ favorites, setFavorites, ecommerceData }) {
         <p className='flex gap-2 items-center font-bold text-xs'>
           <AiFillHeart className='text-accent' size={20} /> FAVORITES
         </p>
-<<<<<<< HEAD
         {favoriteProducts.map((product, index) =>
           index >= page * 5 - 5 && index < page * 5 ? (
             <div
@@ -105,31 +93,6 @@ export default function Favorites({ favorites, setFavorites, ecommerceData }) {
             )}
           </div>
         </div>
-=======
-        {favoriteProducts.map(product => (
-          <div
-            key={product.id}
-            className='grid grid-flow-col border-b gap-5 items-center p-5'
-          >
-            <Link>
-              <img src={product.image} className='aspect-[4/3] object-contain' />
-            </Link>
-            <div>
-              <Link>{product.title}</Link>
-              <p>{product.price}</p>
-            </div>
-            <button
-              onClick={() =>
-                setFavorites(lastState =>
-                  lastState.filter(fav => fav !== product.id)
-                )
-              }
-            >
-              <RiDeleteBin2Fill size={20} />
-            </button>
-          </div>
-        ))}
->>>>>>> 36f9aa6ad179fffdfe0c5dba99de7d421d0bfae9
       </div>
     </>
   );
