@@ -1,23 +1,19 @@
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { useContext, useMemo } from 'react';
+import { useContext } from 'react';
 import { EcommerceContext } from '../../../App';
 import { getRandomProducts } from '../../../helpers/functions';
 
 export default function InitialMenu({ history, cleanHistory }) {
   const [products] = useContext(EcommerceContext);
 
-  const firstFiveHistoryItems = useMemo(
-    () => history.filter((h, index) => index < 5),
-    [history]
-  );
+  const firstFiveHistoryItems = history.filter((h, index) => index < 5);
 
   const cloneProducts = [...products.data];
-  const fiveRandomProducts = useMemo(() => getRandomProducts(products, 5), []);
-  const tenHighestRatedProducts = useMemo(
-    () => cloneProducts.sort((a, b) => b.rating.rate - a.rating.rate).slice(0, 10),
-    []
-  );
+  const fiveRandomProducts = getRandomProducts(products, 5);
+  const tenHighestRatedProducts = cloneProducts
+    .sort((a, b) => b.rating.rate - a.rating.rate)
+    .slice(0, 10);
 
   return (
     <>

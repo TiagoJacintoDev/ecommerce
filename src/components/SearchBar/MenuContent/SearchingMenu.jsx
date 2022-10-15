@@ -1,4 +1,4 @@
-import { useContext, useMemo } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { EcommerceContext } from '../../../App';
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -8,37 +8,23 @@ import NoResultsFound from './NoResultsFound';
 export default function SearchingMenu({ search }) {
   const [products] = useContext(EcommerceContext);
 
-  const highestRatedProducts = useMemo(
-    () =>
-      products.data
-        .filter(product =>
-          product.title.toLowerCase().includes(search.toLowerCase())
-        )
-        .sort((a, b) => b.rating.rate - a.rating.rate)
-        .slice(0, 7),
-    [search]
-  );
+  const highestRatedProducts = products.data
+    .filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
+    .sort((a, b) => b.rating.rate - a.rating.rate)
+    .slice(0, 7);
 
-  const mostCommonCategory = useMemo(() => {
-    const categories = highestRatedProducts.map(product => product.category);
-    return categories
-      .sort(
-        (a, b) =>
-          categories.filter(category => category === a).length -
-          categories.filter(category => category === b).length
-      )
-      .pop();
-  }, [search]);
+  const categories = highestRatedProducts.map(product => product.category);
+  const mostCommonCategory = categories
+    .sort(
+      (a, b) =>
+        categories.filter(category => category === a).length -
+        categories.filter(category => category === b).length
+    )
+    .pop();
 
-  const filteredProducts = useMemo(
-    () =>
-      products.data
-        .filter(product =>
-          product.title.toLowerCase().includes(search.toLowerCase())
-        )
-        .slice(0, 5),
-    [search]
-  );
+  const filteredProducts = products.data
+    .filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
+    .slice(0, 5);
 
   if (
     products.data.filter(product =>

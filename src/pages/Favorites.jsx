@@ -1,25 +1,22 @@
 import AccountSidebar from '../components/AccountSidebar';
 import { AiFillHeart } from 'react-icons/ai';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Favorites({ favorites, setFavorites, ecommerceData }) {
   const [page, setPage] = useState(1);
-  const maxPages = useMemo(() => Math.ceil(favorites.length / 5), [favorites]);
+  const maxPages = Math.ceil(favorites.length / 5);
   const pages = [];
 
   for (let i = 1; i <= maxPages; i++) {
     pages.push(i);
   }
 
-  const favoriteProducts = useMemo(
-    () =>
-      ecommerceData[0].data.filter(product =>
-        favorites.some(fav => fav === product.id)
-      ),
-    [favorites, ecommerceData]
+  const favoriteProducts = ecommerceData[0].data.filter(product =>
+    favorites.some(fav => fav === product.id)
   );
+
   return (
     <>
       <AccountSidebar />

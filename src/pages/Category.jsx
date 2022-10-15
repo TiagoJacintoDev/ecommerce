@@ -1,17 +1,16 @@
 import { Link, useParams } from 'react-router-dom';
 import { lowerFirst, toLink } from '../helpers/functions';
 import { EcommerceContext } from '../App';
-import { useContext, useMemo } from 'react';
+import { useContext } from 'react';
 import FavoriteButton from '../components/FavoriteButton';
 
 export default function Category({ favorites, setFavorites }) {
   const { category } = useParams();
   const [products] = useContext(EcommerceContext);
-  const itemsInCurrentCategory = useMemo(() =>
-    products.data
-      .filter(product => product.category === category)
-      .sort((a, b) => b.rating.rate - a.rating.rate)
-  );
+  const itemsInCurrentCategory = products.data
+    .filter(product => product.category === category)
+    .sort((a, b) => b.rating.rate - a.rating.rate);
+
   return (
     <div className='container mx-auto py-8'>
       <h1 className='text-2xl font-bold mb-3'>{lowerFirst(category)}</h1>

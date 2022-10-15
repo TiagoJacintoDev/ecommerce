@@ -1,21 +1,16 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
 import { Link, useParams } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
 import FavoriteButton from '../components/FavoriteButton';
 import { toLink } from '../helpers/functions';
-import { deviceSizes as ds } from '../helpers/variables';
 
 export default function Product({ ecommerceData, favorites, setFavorites }) {
   const { id } = useParams();
   const [products] = ecommerceData;
 
-  const currentProduct = useMemo(() =>
-    products.data.find(product => product.id === +id)
-  );
+  const currentProduct = products.data.find(product => product.id === +id);
 
-  const relatedProducts = useMemo(() =>
-    products.data.filter(product => currentProduct.category === product.category)
+  const relatedProducts = products.data.filter(
+    product => currentProduct.category === product.category
   );
 
   return (
