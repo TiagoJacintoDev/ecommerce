@@ -1,5 +1,6 @@
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { MdAccountCircle } from 'react-icons/md';
+import { FaShoppingCart } from 'react-icons/fa';
 import Logo from '../assets/logo.png';
 import CategoriesMenu from './CategoriesMenu';
 import SearchBar from './SearchBar/SearchBar';
@@ -14,8 +15,8 @@ export default function Header() {
   const isLaptop = useMediaQuery({ query: `(min-width: ${ds.md})` });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className='bg-accent relative'>
-      <div className='container mx-auto py-2 h-16 flex items-center justify-between'>
+    <div className='bg-accent fixed w-screen top-0'>
+      <div className='container mx-auto h-16 flex items-center justify-between'>
         <button
           onClick={() => setIsMenuOpen(true)}
           className='flex flex-col items-center text-xs font-semibold'
@@ -42,6 +43,9 @@ export default function Header() {
             </Link>
           </div>
         )}
+        <Link to='/cart'>
+          <FaShoppingCart size={33} />
+        </Link>
         {isMenuOpen && <CategoriesMenu closeMenu={() => setIsMenuOpen(false)} />}
       </div>
     </div>

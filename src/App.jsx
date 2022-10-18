@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Login from './pages/authentication/Login';
 import SignUp from './pages/authentication/SignUp';
 import Account from './pages/authentication/Account';
+import Cart from './pages/Cart';
 import ProtectedRoute from './components/helper/ProtectedRoute';
 import ChangeAccountData from './pages/changeAccountData/ChangeAccountData';
 import Favorites from './pages/Favorites';
@@ -40,7 +41,9 @@ export default function App() {
     ],
   });
 
+  const [cart, setCart] = useLocalStorage();
   const [favorites, setFavorites] = useLocalStorage();
+  console.log(cart);
 
   if (ecommerceData[0].isLoading || ecommerceData[1].isLoading)
     return <h1>Loading...</h1>;
@@ -77,11 +80,7 @@ export default function App() {
           element={
             <ProtectedRoute>
               <div className='account-container'>
-                <Favorites
-                  favorites={favorites}
-                  setFavorites={setFavorites}
-                  ecommerceData={ecommerceData}
-                />
+                <Favorites favorites={favorites} setFavorites={setFavorites} />
               </div>
             </ProtectedRoute>
           }
@@ -93,13 +92,17 @@ export default function App() {
             <Product
               favorites={favorites}
               setFavorites={setFavorites}
+              setCart={setCart}
               ecommerceData={ecommerceData}
             />
           }
         />
+        <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
         <Route
           path='/categories/:category'
-          element={<Category favorites={favorites} setFavorites={setFavorites} />}
+          element={
+            <Category favorites={favorites} setFavorites={setFavorites} />
+          }
         />
       </Routes>
     </EcommerceContext.Provider>
