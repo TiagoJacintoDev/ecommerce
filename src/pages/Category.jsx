@@ -23,7 +23,7 @@ export default function Category({ favorites, setFavorites }) {
           >
             <span className='self-end'>
               <FavoriteButton
-                id={product.id}
+                product={product}
                 favorites={favorites}
                 setFavorites={setFavorites}
               />

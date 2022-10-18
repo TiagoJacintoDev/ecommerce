@@ -4,7 +4,7 @@ import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Favorites({ favorites, setFavorites, ecommerceData }) {
+export default function Favorites({ favorites, setFavorites }) {
   const [page, setPage] = useState(1);
   const maxPages = Math.ceil(favorites.length / 5);
   const pages = [];
@@ -13,10 +13,6 @@ export default function Favorites({ favorites, setFavorites, ecommerceData }) {
     pages.push(i);
   }
 
-  const favoriteProducts = ecommerceData[0].data.filter(product =>
-    favorites.some(fav => fav === product.id)
-  );
-
   return (
     <>
       <AccountSidebar />
@@ -24,7 +20,7 @@ export default function Favorites({ favorites, setFavorites, ecommerceData }) {
         <p className='flex gap-2 items-center font-bold text-xs'>
           <AiFillHeart className='text-accent' size={20} /> FAVORITES
         </p>
-        {favoriteProducts.map((product, index) =>
+        {favorites.map((product, index) =>
           index >= page * 5 - 5 && index < page * 5 ? (
             <div
               key={product.id}
