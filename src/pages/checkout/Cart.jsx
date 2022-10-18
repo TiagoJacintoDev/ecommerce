@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { toLink } from '../helpers/functions';
+import { toLink } from '../../helpers/functions';
 import { BsFillTrashFill } from 'react-icons/bs';
 
 export default function Cart({ cart, setCart }) {
@@ -52,9 +52,11 @@ export default function Cart({ cart, setCart }) {
         ) : (
           <Link to='/'>Start Buying</Link>
         )}
-        <button className='bg-accent text-white py-2 px-16 rounded-md'>
-          <Link to={`/checkout/delivery`}>PAY</Link>
-        </button>
+        <Link to={`/checkout/delivery`}>
+          <button className='bg-accent text-white py-2 px-16 rounded-md'>
+            PAY
+          </button>
+        </Link>
       </div>
     </div>
   );
