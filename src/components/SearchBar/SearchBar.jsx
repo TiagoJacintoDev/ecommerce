@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function SearchBar() {
   const [isSearchBarMenuOpen, setIsMenuSearchBarOpen] = useState(false);
-  const [history, setHistory] = useLocalStorage();
+  const [history, setHistory] = useLocalStorage('history');
   const [search, setSearch] = useState('');
 
   const { pathname } = useLocation();

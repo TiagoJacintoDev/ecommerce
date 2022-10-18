@@ -9,11 +9,12 @@ import Home from './pages/Home';
 import Login from './pages/authentication/Login';
 import SignUp from './pages/authentication/SignUp';
 import Account from './pages/authentication/Account';
-import Cart from './pages/Cart';
+import Cart from './pages/checkout/Cart';
 import ProtectedRoute from './components/helper/ProtectedRoute';
 import ChangeAccountData from './pages/changeAccountData/ChangeAccountData';
 import Favorites from './pages/Favorites';
 import Product from './pages/Product';
+import Delivery from './pages/checkout/Delivery';
 
 export const EcommerceContext = createContext();
 
@@ -41,9 +42,11 @@ export default function App() {
     ],
   });
 
-  const [cart, setCart] = useLocalStorage();
-  const [favorites, setFavorites] = useLocalStorage();
-  console.log(cart);
+  const [cart, setCart] = useLocalStorage('cart');
+  const [favorites, setFavorites] = useLocalStorage('favorites');
+  const [addresses, setAddresses] = useLocalStorage('address');
+
+  console.log(addresses);
 
   if (ecommerceData[0].isLoading || ecommerceData[1].isLoading)
     return <h1>Loading...</h1>;
@@ -98,6 +101,12 @@ export default function App() {
           }
         />
         <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
+        <Route
+          path='/checkout/delivery'
+          element={
+            <Delivery addresses={addresses} setAddresses={setAddresses} />
+          }
+        />
         <Route
           path='/categories/:category'
           element={
