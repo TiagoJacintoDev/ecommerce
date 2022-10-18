@@ -3,7 +3,12 @@ import { AiFillStar } from 'react-icons/ai';
 import FavoriteButton from '../components/FavoriteButton';
 import { toLink } from '../helpers/functions';
 
-export default function Product({ ecommerceData, favorites, setFavorites }) {
+export default function Product({
+  ecommerceData,
+  favorites,
+  setFavorites,
+  setCart,
+}) {
   const { id } = useParams();
   const [products] = ecommerceData;
 
@@ -37,10 +42,19 @@ export default function Product({ ecommerceData, favorites, setFavorites }) {
             </div>
           </div>
           <p className='font-bold text-2xl text-right'>${currentProduct.price}</p>
-          <button className='purchase-button add-to-cart-button my-3'>
+          <button
+            onClick={() => setCart(lastCart => [...lastCart, currentProduct])}
+            className='purchase-button add-to-cart-button my-3'
+          >
             ADD TO CART
           </button>
-          <button className='purchase-button buy-now-button'>BUY NOW</button>
+          <Link
+            to='/cart'
+            onClick={() => setCart(lastCart => [...lastCart, currentProduct])}
+            className='purchase-button buy-now-button'
+          >
+            BUY NOW
+          </Link>
         </div>
       </div>
       <div>
