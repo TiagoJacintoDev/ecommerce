@@ -48,6 +48,10 @@
   @apply bg-accent hover:bg-accent-light text-white font-semibold;
 }
 
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
 *,
 *::before,
 *::after {
@@ -67,6 +71,10 @@ ol[role='list'] {
 
 html:focus-within {
   scroll-behavior: smooth;
+}
+
+body {
+  @apply pt-16;
 }
 
 html,
