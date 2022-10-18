@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
-import useFormValidation from '../../hooks/useFormValidation';
+import { useFormValidation } from '../../hooks/useFormValidation';
 
 export default function SignUp() {
   const [error, setError] = useState('');
@@ -61,7 +61,10 @@ export default function SignUp() {
             <input
               {...register('password', {
                 required: defaultRequiredMessage,
-                pattern: { value: passwordPattern, message: 'Password is invalid' },
+                pattern: {
+                  value: passwordPattern,
+                  message: 'Password is invalid',
+                },
               })}
               className='authentication-input'
               type='password'

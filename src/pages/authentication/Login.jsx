@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
 import FalseAuthentication from '../../components/FalseAuthentication';
-import useFormValidation from '../../hooks/useFormValidation';
+import { useFormValidation } from '../../hooks/useFormValidation';
 
 export default function Login() {
   const [error, setError] = useState('');
@@ -15,6 +15,8 @@ export default function Login() {
     emailPattern,
     passwordPattern,
     defaultRequiredMessage,
+    defaultEmailPatternMessage,
+    defaultPasswordPatternMessage,
   } = useFormValidation();
 
   const { logIn } = UserAuth();
@@ -49,7 +51,10 @@ export default function Login() {
               <input
                 {...register('email', {
                   required: defaultRequiredMessage,
-                  pattern: { value: emailPattern, message: 'Email is invalid' },
+                  pattern: {
+                    value: emailPattern,
+                    message: defaultEmailPatternMessage,
+                  },
                 })}
                 className='authentication-input'
                 type='email'
@@ -67,7 +72,7 @@ export default function Login() {
                   required: defaultRequiredMessage,
                   pattern: {
                     value: passwordPattern,
-                    message: 'Password is invalid',
+                    message: defaultPasswordPatternMessage,
                   },
                 })}
                 className='authentication-input'
