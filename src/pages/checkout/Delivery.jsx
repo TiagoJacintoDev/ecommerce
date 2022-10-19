@@ -3,7 +3,9 @@ import CountriesDropdown from '../../components/CountriesDropdown';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { v4 } from 'uuid';
 
-export default function Delivery({ addresses, setAddresses }) {
+import CheckoutProducts from '../../components/CheckoutProducts';
+
+export default function Delivery({ addresses, setAddresses, cart }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isEditingAddress, setIsEditingAddress] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState();
@@ -80,95 +82,138 @@ export default function Delivery({ addresses, setAddresses }) {
 
   return (
     <div className='container mx-auto'>
-      <h1>Where do you want to receive the delivery?</h1>
-      {addresses.length === 0 || isFormOpen ? (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor='name'>Name</label>
-          <input
-            {...register('name', {
-              required: defaultRequiredMessage,
-            })}
-            type='text'
-            name='name'
-            id='name'
-          />
-          {errors?.name?.message}
+      <h1 className='font-bold text-2xl mt-5 mb-4'>
+        Where do you want to receive the delivery?
+      </h1>
+      <div className='grid items-start gap-5 grid-cols-[1fr_0.75fr]'>
+        {addresses.length === 0 || isFormOpen ? (
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='flex flex-col py-1'>
+              <label htmlFor='name'>Name</label>
+              <input
+                {...register('name', {
+                  required: defaultRequiredMessage,
+                })}
+                className='form-input'
+                type='text'
+                name='name'
+                id='name'
+              />
+              {errors?.name?.message}
+            </div>
 
-          <label htmlFor='address'>Address</label>
-          <input
-            {...register('address', {
-              required: defaultRequiredMessage,
-            })}
-            type='text'
-            name='address'
-            id='address'
-          />
-          {errors?.address?.message}
+            <div className='flex flex-col py-1'>
+              <label htmlFor='address'>Address</label>
+              <input
+                {...register('address', {
+                  required: defaultRequiredMessage,
+                })}
+                className='form-input'
+                type='text'
+                name='address'
+                id='address'
+              />
+              {errors?.address?.message}
+            </div>
 
-          <label htmlFor='postal'>Postal</label>
-          <input
-            {...register('postal', {
-              required: defaultRequiredMessage,
-            })}
-            type='text'
-            name='postal'
-            id='postal'
-          />
-          {errors?.postal?.message}
+            <div className='flex flex-col py-1'>
+              <label htmlFor='postal'>Postal</label>
+              <input
+                {...register('postal', {
+                  required: defaultRequiredMessage,
+                })}
+                className='form-input'
+                type='text'
+                name='postal'
+                id='postal'
+              />
+              {errors?.postal?.message}
+            </div>
 
-          <label htmlFor='city'>City</label>
-          <input
-            {...register('city', {
-              required: defaultRequiredMessage,
-            })}
-            type='text'
-            name='city'
-            id='city'
-          />
-          {errors?.city?.message}
+            <div className='flex flex-col py-1'>
+              <label htmlFor='city'>City</label>
+              <input
+                {...register('city', {
+                  required: defaultRequiredMessage,
+                })}
+                className='form-input'
+                type='text'
+                name='city'
+                id='city'
+              />
+              {errors?.city?.message}
+            </div>
 
-          <CountriesDropdown
-            register={register}
-            errors={errors}
-            defaultRequiredMessage
-          />
+            <div className='flex flex-col py-1'>
+              <CountriesDropdown
+                register={register}
+                errors={errors}
+                defaultRequiredMessage
+              />
+            </div>
 
-          <label htmlFor='tel'>Cell Phone</label>
-          <input
-            {...register('tel', {
-              required: defaultRequiredMessage,
-              pattern: {
-                value: cellNumberPattern,
-                message: defaultCellPhonePatternMessage,
-              },
-            })}
-            type='tel'
-            name='tel'
-            id='tel'
-          />
-          {errors?.tel?.message}
+            <div className='flex flex-col py-1'>
+              <label htmlFor='tel'>Cell Phone</label>
+              <input
+                {...register('tel', {
+                  required: defaultRequiredMessage,
+                  pattern: {
+                    value: cellNumberPattern,
+                    message: defaultCellPhonePatternMessage,
+                  },
+                })}
+                className='form-input'
+                type='tel'
+                name='tel'
+                id='tel'
+              />
+              {errors?.tel?.message}
+            </div>
 
-          <button type='button' onClick={cancelForm}>
-            Cancel
-          </button>
-          <button>Save</button>
-        </form>
-      ) : (
-        <>
-          {addresses.map(address => (
-            <ul key={address.id}>
-              <li>{address.name}</li>
-              <li>{address.address}</li>
-              <li>{address.postal}</li>
-              <li>{address.city}</li>
-              <li>{address.country}</li>
-              <li>{address.tel}</li>
-            </ul>
-          ))}
-          <button onClick={() => setIsFormOpen(true)}>Create New</button>
-          <button onClick={editAddress}>Edit</button>
-        </>
-      )}
+            <div className='flex items-center justify-between mt-3'>
+              <button
+                type='button'
+                onClick={cancelForm}
+                className='form-button'
+              >
+                Cancel
+              </button>
+              <button className='form-button'>Save</button>
+            </div>
+          </form>
+        ) : (
+          <div>
+            {addresses.map(address => (
+              <ul
+                key={address.id}
+                onClick={() => setSelectedAddress(address)}
+                className={`${
+                  address.id === selectedAddress?.id ? 'bg-gray-200' : ''
+                } border-b border-gray-300 py-1 px-3 cursor-pointer`}
+              >
+                <li>{address.name}</li>
+                <li>{address.address}</li>
+                <li>
+                  {address.postal}, {address.city}, {address.country}
+                </li>
+                <li>{address.tel}</li>
+              </ul>
+            ))}
+            <div className='flex items-center justify-between mt-6'>
+              <button
+                onClick={() => setIsFormOpen(true)}
+                className='form-button'
+              >
+                CREATE NEW
+              </button>
+              <button onClick={editAddress} className='form-button'>
+                EDIT
+              </button>
+            </div>
+          </div>
+        )}
+        <CheckoutProducts cart={cart} link={'/checkout/shipping'} />
+      </div>
     </div>
   );
 }
