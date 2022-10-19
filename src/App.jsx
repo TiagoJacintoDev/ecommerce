@@ -15,6 +15,7 @@ import ChangeAccountData from './pages/changeAccountData/ChangeAccountData';
 import Favorites from './pages/Favorites';
 import Product from './pages/Product';
 import Delivery from './pages/checkout/Delivery';
+import Shipping from './pages/checkout/Shipping';
 
 export const EcommerceContext = createContext();
 
@@ -45,8 +46,6 @@ export default function App() {
   const [cart, setCart] = useLocalStorage('cart');
   const [favorites, setFavorites] = useLocalStorage('favorites');
   const [addresses, setAddresses] = useLocalStorage('address');
-
-  console.log(addresses);
 
   if (ecommerceData[0].isLoading || ecommerceData[1].isLoading)
     return <h1>Loading...</h1>;
@@ -104,9 +103,14 @@ export default function App() {
         <Route
           path='/checkout/delivery'
           element={
-            <Delivery addresses={addresses} setAddresses={setAddresses} />
+            <Delivery
+              addresses={addresses}
+              setAddresses={setAddresses}
+              cart={cart}
+            />
           }
         />
+        <Route path='/checkout/shipping' element={<Shipping cart={cart} />} />
         <Route
           path='/categories/:category'
           element={
