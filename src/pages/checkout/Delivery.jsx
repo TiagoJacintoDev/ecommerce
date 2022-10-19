@@ -85,7 +85,7 @@ export default function Delivery({ addresses, setAddresses, cart }) {
       <h1 className='font-bold text-2xl mt-5 mb-4'>
         Where do you want to receive the delivery?
       </h1>
-      <div className='grid items-start gap-5 grid-cols-[1fr_0.75fr]'>
+      <div className='grid items-start gap-5 sm:grid-cols-[1fr_0.75fr]'>
         {addresses.length === 0 || isFormOpen ? (
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='flex flex-col py-1'>
@@ -176,9 +176,9 @@ export default function Delivery({ addresses, setAddresses, cart }) {
                 onClick={cancelForm}
                 className='form-button'
               >
-                Cancel
+                CANCEL
               </button>
-              <button className='form-button'>Save</button>
+              <button className='form-button'>SAVE</button>
             </div>
           </form>
         ) : (

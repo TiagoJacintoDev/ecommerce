@@ -10,7 +10,7 @@ export default function Shipping({ cart }) {
       <h1 className='font-bold text-2xl mt-5 mb-4'>
         Chose the type of shipping
       </h1>
-      <div className='grid items-start gap-12 grid-cols-[1fr_0.75fr]'>
+      <div className='grid items-start sm:gap-12 sm:grid-cols-[1fr_0.75fr]'>
         <div>
           {shippingOptions.map(option => (
             <div

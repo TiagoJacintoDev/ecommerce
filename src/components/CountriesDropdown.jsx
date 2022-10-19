@@ -8,6 +8,7 @@ export default function CountriesDropdown({
       <label htmlFor='country'>Country</label>
       <select
         {...register('country', { required: defaultRequiredMessage })}
+        className='form-input'
         id='country'
         name='country'
       >
