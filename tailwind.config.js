@@ -10,6 +10,10 @@ module.exports = {
         'dark-blue-lighten': '#372948',
         'light-gray': '#F4F5F9',
       },
+      screens: {
+        xs: { min: '400px', max: '640px' },
+        XSmax: { max: '400px' },
+      },
     },
   },
   plugins: [],
