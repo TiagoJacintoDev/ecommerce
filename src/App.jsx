@@ -10,7 +10,7 @@ import SignUp from './pages/authentication/SignUp';
 import Cart from './pages/checkout/Cart';
 import Product from './pages/Product';
 import AccountRouting from './components/routing/AccountRouting';
-import CartRouting from './components/routing/CartRouting';
+import CheckoutRouting from './components/routing/CheckoutRouting';
 import ProtectedAuthRoute from './components/routing/protectors/ProtectedAuth';
 
 export default function App() {
@@ -73,7 +73,7 @@ export default function App() {
         <Route
           path='/checkout/*'
           element={
-            <CartRouting
+            <CheckoutRouting
               addresses={addresses}
               setAddresses={setAddresses}
               cart={cart}

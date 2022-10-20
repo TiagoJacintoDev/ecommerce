@@ -3,7 +3,7 @@ import Delivery from '../../pages/checkout/Delivery';
 import Payment from '../../pages/checkout/Payment';
 import Shipping from '../../pages/checkout/Shipping';
 import Success from '../../pages/checkout/Success';
-import ProtectedCartRoute from './protectors/ProtectedCartRoute';
+import ProtectedCheckoutRoute from './protectors/ProtectedCheckoutRoute';
 
 export default function CartRouting({
   addresses,
@@ -14,7 +14,7 @@ export default function CartRouting({
   setShipping,
 }) {
   return (
-    <ProtectedCartRoute cart={cart}>
+    <ProtectedCheckoutRoute cart={cart}>
       <Routes>
         <Route
           path='delivery'
@@ -55,6 +55,6 @@ export default function CartRouting({
           }
         />
       </Routes>
-    </ProtectedCartRoute>
+    </ProtectedCheckoutRoute>
   );
 }
