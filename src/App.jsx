@@ -11,7 +11,7 @@ import Cart from './pages/checkout/Cart';
 import Product from './pages/Product';
 import AccountRouting from './components/routing/AccountRouting';
 import CheckoutRouting from './components/routing/CheckoutRouting';
-import ProtectedAuthRoute from './components/routing/protectors/ProtectedAuth';
+import ProtectedAuthRoute from './components/routing/protectors/ProtectedAuthRoute';
 
 export default function App() {
   const [cart, setCart] = useLocalStorage('cart');
