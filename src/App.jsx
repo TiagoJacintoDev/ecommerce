@@ -1,6 +1,7 @@
 import { useQueries } from '@tanstack/react-query';
 import { useLocalStorage } from './hooks/useLocalStorage';
-import { createContext } from 'react';
+import { useSessionStorage } from './hooks/useSessionStorage';
+import { createContext, useState } from 'react';
 import { Route, Routes, useMatch } from 'react-router-dom';
 import { api } from './services/api';
 import Header from './components/Header';
@@ -16,6 +17,7 @@ import Favorites from './pages/Favorites';
 import Product from './pages/Product';
 import Delivery from './pages/checkout/Delivery';
 import Shipping from './pages/checkout/Shipping';
+import Payment from './pages/checkout/Payment';
 
 export const EcommerceContext = createContext();
 
@@ -45,7 +47,9 @@ export default function App() {
 
   const [cart, setCart] = useLocalStorage('cart');
   const [favorites, setFavorites] = useLocalStorage('favorites');
-  const [addresses, setAddresses] = useLocalStorage('address');
+  const [addresses, setAddresses] = useLocalStorage('addresses');
+
+  const [shipping, setShipping] = useSessionStorage();
 
   if (ecommerceData[0].isLoading || ecommerceData[1].isLoading)
     return <h1>Loading...</h1>;
@@ -110,7 +114,22 @@ export default function App() {
             />
           }
         />
-        <Route path='/checkout/shipping' element={<Shipping cart={cart} />} />
+        <Route
+          path='/checkout/shipping'
+          element={
+            <Shipping
+              cart={cart}
+              shipping={shipping}
+              setShipping={setShipping}
+            />
+          }
+        />
+        <Route
+          path='/checkout/payment'
+          element={
+            <Payment cart={cart} addresses={addresses} shipping={shipping} />
+          }
+        />
         <Route
           path='/categories/:category'
           element={

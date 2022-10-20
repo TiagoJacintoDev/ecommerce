@@ -35,15 +35,15 @@ function setDeliveryDate(offset) {
 export const shippingOptions = [
   {
     id: 1,
-    name: 'Normal',
+    title: 'Normal',
     deliveryDate: setDeliveryDate(4),
-    cost: '2.99',
+    price: '2.99',
   },
   {
     id: 2,
-    name: 'Express',
+    title: 'Express',
     deliveryDate: setDeliveryDate(2),
-    cost: '4.99',
+    price: '4.99',
   },
-  { id: 3, name: 'Next Day', deliveryDate: setDeliveryDate(1), cost: '6.99' },
+  { id: 3, title: 'Next Day', deliveryDate: setDeliveryDate(1), price: '6.99' },
 ];
