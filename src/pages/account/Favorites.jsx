@@ -1,4 +1,4 @@
-import AccountSidebar from '../components/AccountSidebar';
+import AccountSidebar from '../../components/AccountSidebar';
 import { AiFillHeart } from 'react-icons/ai';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { useState } from 'react';
@@ -15,7 +15,6 @@ export default function Favorites({ favorites, setFavorites }) {
 
   return (
     <>
-      <AccountSidebar />
       <div>
         <p className='flex gap-2 items-center font-bold text-xs'>
           <AiFillHeart className='text-accent' size={20} /> FAVORITES
@@ -27,18 +26,21 @@ export default function Favorites({ favorites, setFavorites }) {
               className='grid grid-flow-col border-b gap-5 items-center py-5 sm:p-5'
             >
               <Link>
-                <img src={product.image} className='aspect-[4/3] object-contain' />
+                <img
+                  src={product.image}
+                  className='aspect-[4/3] object-contain'
+                />
               </Link>
               <div>
                 <Link>{product.title}</Link>
                 <p>{product.price}</p>
               </div>
               <button
-                onClick={() =>
+                onClick={() => {
                   setFavorites(lastState =>
-                    lastState.filter(fav => fav !== product.id)
-                  )
-                }
+                    lastState.filter(fav => fav.id !== product.id)
+                  );
+                }}
               >
                 <RiDeleteBin2Fill size={20} />
               </button>

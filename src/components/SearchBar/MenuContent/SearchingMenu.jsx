@@ -1,15 +1,17 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { EcommerceContext } from '../../../App';
+import { EcommerceData } from '../../../context/EcommerceContext';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { lowerFirst } from '../../../helpers/functions';
 import NoResultsFound from './NoResultsFound';
+import { toLink } from '../../../helpers/functions';
 
-export default function SearchingMenu({ search }) {
-  const [products] = useContext(EcommerceContext);
+export default function SearchingMenu({ search, closeSearchMenu }) {
+  const [products] = EcommerceData();
 
   const highestRatedProducts = products.data
-    .filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
+    .filter(product =>
+      product.title.toLowerCase().includes(search.toLowerCase())
+    )
     .sort((a, b) => b.rating.rate - a.rating.rate)
     .slice(0, 7);
 
@@ -23,7 +25,9 @@ export default function SearchingMenu({ search }) {
     .pop();
 
   const filteredProducts = products.data
-    .filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
+    .filter(product =>
+      product.title.toLowerCase().includes(search.toLowerCase())
+    )
     .slice(0, 5);
 
   if (
@@ -40,6 +44,7 @@ export default function SearchingMenu({ search }) {
         <div className='font-semibold'>SEARCH SUGGESTIONS</div>
         <div className='font-bold'>"{search}"</div>
         <Link
+          onClick={closeSearchMenu}
           to={`/category/${mostCommonCategory}`}
           className='search-link ml-4 hover:font-semibold'
         >
@@ -47,7 +52,8 @@ export default function SearchingMenu({ search }) {
         </Link>
         {highestRatedProducts.map(product => (
           <Link
-            to={`/products/${product.title}`}
+            onClick={closeSearchMenu}
+            to={toLink(`/product/${product.id}/${product.title}`)}
             key={product.id}
             className='search-link'
           >
@@ -65,12 +71,13 @@ export default function SearchingMenu({ search }) {
       <div className='[&>*:not(:last-child)]:mb-10'>
         {filteredProducts.map(product => (
           <div key={product.id} className='flex gap-6 items-center'>
-            <Link to={`/products/${product.title}`}>
+            <Link to={toLink(`/product/${product.id}/${product.title}`)}>
               <img src={product.image} className='max-h-20' />
             </Link>
             <div className='flex flex-col'>
               <Link
-                to={`/products/${product.title}`}
+                onClick={closeSearchMenu}
+                to={toLink(`/product/${product.id}/${product.title}`)}
                 className='hover:underline hover:text-blue-700'
               >
                 {product.title}

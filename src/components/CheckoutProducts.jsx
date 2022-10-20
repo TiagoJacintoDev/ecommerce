@@ -1,17 +1,13 @@
 import { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
 
-export default function CheckoutProducts({
-  cart,
-  link,
-  onLinkClick,
-  shipping,
-}) {
+export default function CheckoutProducts({ cart, shipping }) {
   const totalCartValue = cart.reduce(
     (preValue, curValue) => preValue + curValue.price,
     0
   );
+
+  const subTotal = +shipping?.price + totalCartValue;
 
   const [isCartShowing, setIsCartShowing] = useState(false);
 
@@ -39,20 +35,15 @@ export default function CheckoutProducts({
           ))}
         <div className='flex justify-between items-center pt-2'>
           <span>SUBTOTAL</span>
-          <span className='font-bold'>${totalCartValue}</span>
+          <span className='font-bold'>${subTotal || totalCartValue}</span>
         </div>
         {shipping && (
           <div className='flex justify-between items-center pt-2'>
             <span>Shipping Total</span>
-            <span>${shipping.price}</span>
+            <span className='font-bold'>${shipping.price}</span>
           </div>
         )}
       </div>
-      <Link onClick={onLinkClick} to={link} className='self-center'>
-        <button className='py-2 w-[250px] text-white bg-accent rounded-md'>
-          PROCEED TO CHECKOUT
-        </button>
-      </Link>
     </div>
   );
 }

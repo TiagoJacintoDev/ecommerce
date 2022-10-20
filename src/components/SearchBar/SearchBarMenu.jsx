@@ -1,7 +1,7 @@
 import InitialMenu from './MenuContent/InitialMenu';
 import SearchingMenu from './MenuContent/SearchingMenu';
 
-export default function SearchBarMenu({
+export default function SearchBarMenuModal({
   closeSearchMenu,
   history,
   cleanHistory,
@@ -15,9 +15,13 @@ export default function SearchBarMenu({
       />
       <div className='search-bar-menu'>
         {search ? (
-          <SearchingMenu search={search} />
+          <SearchingMenu search={search} closeSearchMenu={closeSearchMenu} />
         ) : (
-          <InitialMenu history={history} cleanHistory={cleanHistory} />
+          <InitialMenu
+            history={history}
+            cleanHistory={cleanHistory}
+            closeSearchMenu={closeSearchMenu}
+          />
         )}
       </div>
     </>

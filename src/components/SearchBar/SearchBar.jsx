@@ -9,16 +9,10 @@ export default function SearchBar() {
   const [history, setHistory] = useLocalStorage('history');
   const [search, setSearch] = useState('');
 
-  const { pathname } = useLocation();
-
   function addSearchToHistory() {
     setHistory(lastHistory => [search, ...lastHistory]);
     setSearch('');
   }
-
-  useEffect(() => {
-    setIsMenuSearchBarOpen(false);
-  }, [pathname]);
 
   return (
     <>

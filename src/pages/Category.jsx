@@ -1,12 +1,11 @@
 import { Link, useParams } from 'react-router-dom';
 import { lowerFirst, toLink } from '../helpers/functions';
-import { EcommerceContext } from '../App';
-import { useContext } from 'react';
+import { EcommerceData } from '../context/EcommerceContext';
 import FavoriteButton from '../components/FavoriteButton';
 
 export default function Category({ favorites, setFavorites }) {
   const { category } = useParams();
-  const [products] = useContext(EcommerceContext);
+  const [products] = EcommerceData();
   const itemsInCurrentCategory = products.data
     .filter(product => product.category === category)
     .sort((a, b) => b.rating.rate - a.rating.rate);

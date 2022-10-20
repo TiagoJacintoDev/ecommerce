@@ -1,11 +1,15 @@
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { EcommerceContext } from '../../../App';
+import { EcommerceData } from '../../../context/EcommerceContext';
 import { getRandomProducts } from '../../../helpers/functions';
+import { toLink } from '../../../helpers/functions';
 
-export default function InitialMenu({ history, cleanHistory }) {
-  const [products] = useContext(EcommerceContext);
+export default function InitialMenu({
+  history,
+  cleanHistory,
+  closeSearchMenu,
+}) {
+  const [products] = EcommerceData();
 
   const firstFiveHistoryItems = history.filter((h, index) => index < 5);
 
@@ -21,7 +25,8 @@ export default function InitialMenu({ history, cleanHistory }) {
         <div className='font-semibold pb-3'>HIGHEST RATED PRODUCTS</div>
         {tenHighestRatedProducts.map(product => (
           <Link
-            to={`/products/${product.title}`}
+            onClick={closeSearchMenu}
+            to={toLink(`/product/${product.id}/${product.title}`)}
             key={product.id}
             className='search-link'
           >
@@ -46,12 +51,16 @@ export default function InitialMenu({ history, cleanHistory }) {
       <div className='[&>*:not(:last-child)]:mb-10'>
         {fiveRandomProducts.map(product => (
           <div key={product.id} className='flex gap-6 items-center'>
-            <Link to={`/products/${product.title}`}>
+            <Link
+              onClick={closeSearchMenu}
+              to={toLink(`/product/${product.id}/${product.title}`)}
+            >
               <img className='max-h-20' src={product.image} />
             </Link>
             <div className='flex flex-col'>
               <Link
-                to={`/products/${product.title}`}
+                onClick={closeSearchMenu}
+                to={toLink(`/product/${product.id}/${product.title}`)}
                 className='hover:underline hover:text-blue-700'
               >
                 {product.title}

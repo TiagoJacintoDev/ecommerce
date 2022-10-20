@@ -2,15 +2,11 @@ import { Link, useParams } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
 import FavoriteButton from '../components/FavoriteButton';
 import { toLink } from '../helpers/functions';
+import { EcommerceData } from '../context/EcommerceContext';
 
-export default function Product({
-  ecommerceData,
-  favorites,
-  setFavorites,
-  setCart,
-}) {
+export default function Product({ favorites, setFavorites, setCart }) {
   const { id } = useParams();
-  const [products] = ecommerceData;
+  const [products] = EcommerceData();
 
   const currentProduct = products.data.find(product => product.id === +id);
 
@@ -41,7 +37,9 @@ export default function Product({
               {currentProduct.rating.rate} ({currentProduct.rating.count})
             </div>
           </div>
-          <p className='font-bold text-2xl text-right'>${currentProduct.price}</p>
+          <p className='font-bold text-2xl text-right'>
+            ${currentProduct.price}
+          </p>
           <button
             onClick={() => setCart(lastCart => [...lastCart, currentProduct])}
             className='purchase-button add-to-cart-button my-3'

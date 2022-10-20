@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom';
 import CheckoutProducts from '../../components/CheckoutProducts';
 
-export default function Payment({ addresses, cart, shipping }) {
+export default function Payment({
+  addresses,
+  cart,
+  shipping,
+  clearCart,
+  clearShipping,
+}) {
   const selectedAddress = addresses.find(address => address.selected);
   return (
     <div className='container mx-auto'>
@@ -21,16 +27,29 @@ export default function Payment({ addresses, cart, shipping }) {
               </li>
               <li>{selectedAddress.tel}</li>
             </ul>
-            <Link to='/checkout/shipping' className='text-blue-700'>
+            <Link
+              to='/checkout/delivery?editing=true'
+              className='text-blue-700'
+            >
               Edit
             </Link>
           </div>
         </div>
-        <CheckoutProducts
-          cart={cart}
-          link={'/checkout/success'}
-          shipping={shipping}
-        />
+        <div className='flex flex-col gap-4'>
+          <CheckoutProducts cart={cart} shipping={shipping} />
+          <Link
+            onClick={() => {
+              clearCart();
+              clearShipping();
+            }}
+            to='/checkout/success'
+            className='self-center'
+          >
+            <button className='py-2 w-[250px] text-white bg-accent rounded-md'>
+              FINISH PURCHASE
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

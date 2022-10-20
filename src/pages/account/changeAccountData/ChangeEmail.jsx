@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { UserAuth } from '../../context/AuthContext';
-import { useFormValidation } from '../../hooks/useFormValidation';
+import { UserAuth } from '../../../context/AuthContext';
+import { useFormValidation } from '../../../hooks/useFormValidation';
 
 export default function ChangeEmail() {
   const [error, setError] = useState('');

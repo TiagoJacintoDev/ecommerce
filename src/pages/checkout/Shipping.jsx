@@ -2,13 +2,10 @@ import CheckoutProducts from '../../components/CheckoutProducts';
 import { shippingOptions } from '../../data/shippingOptions';
 import { BsCircle, BsCheckCircleFill } from 'react-icons/bs';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Shipping({ cart, setShipping }) {
   const [selectedShipping, setSelectedShipping] = useState(shippingOptions[0]);
-
-  function onLinkClick() {
-    setShipping(selectedShipping);
-  }
 
   return (
     <div className='container mx-auto'>
@@ -39,12 +36,18 @@ export default function Shipping({ cart, setShipping }) {
             </div>
           ))}
         </div>
-
-        <CheckoutProducts
-          cart={cart}
-          link={'/checkout/payment'}
-          onLinkClick={onLinkClick}
-        />
+        <div className='flex flex-col gap-4'>
+          <CheckoutProducts cart={cart} />
+          <Link
+            onClick={() => setShipping(selectedShipping)}
+            to='/checkout/payment'
+            className='self-center'
+          >
+            <button className='py-2 w-[250px] text-white bg-accent rounded-md'>
+              PROCEED TO CHECKOUT
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
-import FalseAuthentication from '../../components/FalseAuthentication';
+import IncorrectAuthentication from '../../components/IncorrectAuthentication';
 import { useFormValidation } from '../../hooks/useFormValidation';
 
 export default function Login() {
@@ -87,7 +87,7 @@ export default function Login() {
         </div>
       </div>
       {isShowingError && (
-        <FalseAuthentication closeModal={() => setIsShowingError(false)} />
+        <IncorrectAuthentication closeModal={() => setIsShowingError(false)} />
       )}
     </>
   );

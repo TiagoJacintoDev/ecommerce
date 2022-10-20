@@ -4,10 +4,13 @@ import { useFormValidation } from '../../hooks/useFormValidation';
 import { v4 } from 'uuid';
 
 import CheckoutProducts from '../../components/CheckoutProducts';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Delivery({ addresses, setAddresses, cart }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isEditingAddress, setIsEditingAddress] = useState(false);
+
+  const { search } = useLocation();
 
   const {
     defaultRequiredMessage,
@@ -242,7 +245,17 @@ export default function Delivery({ addresses, setAddresses, cart }) {
             </div>
           </div>
         )}
-        <CheckoutProducts cart={cart} link={'/checkout/shipping'} />
+        <div className='flex flex-col gap-4'>
+          <CheckoutProducts cart={cart} />
+          <Link
+            to={`/checkout/${search ? 'payment' : 'shipping'}`}
+            className='self-center'
+          >
+            <button className='py-2 w-[250px] text-white bg-accent rounded-md'>
+              PROCEED TO CHECKOUT
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
