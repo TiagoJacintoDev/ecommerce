@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CountriesDropdown from '../../components/CountriesDropdown';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { v4 } from 'uuid';
@@ -8,7 +8,7 @@ import CheckoutProducts from '../../components/CheckoutProducts';
 export default function Delivery({ addresses, setAddresses, cart }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isEditingAddress, setIsEditingAddress] = useState(false);
-  const [selectedAddress, setSelectedAddress] = useState();
+
   const {
     defaultRequiredMessage,
     defaultCellPhonePatternMessage,
@@ -19,9 +19,22 @@ export default function Delivery({ addresses, setAddresses, cart }) {
     reset,
   } = useFormValidation();
 
-  useEffect(() => {
-    setSelectedAddress(addresses[addresses.length - 1]);
-  }, [addresses]);
+  function setCurrentAddress(address) {
+    if (addresses.length <= 1) return;
+    setAddresses(lastAddresses =>
+      lastAddresses.map(adr =>
+        adr === address
+          ? {
+              ...adr,
+              selected: true,
+            }
+          : {
+              ...adr,
+              selected: false,
+            }
+      )
+    );
+  }
 
   function onSubmit({ name, address, postal, city, country, tel }) {
     setIsFormOpen(false);
@@ -30,15 +43,37 @@ export default function Delivery({ addresses, setAddresses, cart }) {
     if (isEditingAddress) {
       setAddresses(lastAddresses =>
         lastAddresses.map(adr =>
-          adr.id === selectedAddress.id
-            ? { ...adr, name, address, postal, city, country, tel }
+          adr.selected
+            ? {
+                ...adr,
+                name,
+                address,
+                postal,
+                city,
+                country,
+                tel,
+              }
             : adr
         )
       );
     } else {
+      setAddresses(lastAddresses =>
+        lastAddresses.map(adr =>
+          adr.selected ? { ...adr, selected: false } : adr
+        )
+      );
       setAddresses(lastAddresses => [
         ...lastAddresses,
-        { id: v4(), name, address, postal, city, country, tel },
+        {
+          id: v4(),
+          selected: true,
+          name,
+          address,
+          postal,
+          city,
+          country,
+          tel,
+        },
       ]);
     }
 
@@ -56,14 +91,7 @@ export default function Delivery({ addresses, setAddresses, cart }) {
     setIsEditingAddress(true);
     setIsFormOpen(true);
 
-    reset({
-      name: selectedAddress.name,
-      address: selectedAddress.address,
-      postal: selectedAddress.postal,
-      city: selectedAddress.city,
-      country: selectedAddress.country,
-      tel: selectedAddress.tel,
-    });
+    reset(addresses.find(address => address.selected));
   }
 
   function cancelForm() {
@@ -186,9 +214,11 @@ export default function Delivery({ addresses, setAddresses, cart }) {
             {addresses.map(address => (
               <ul
                 key={address.id}
-                onClick={() => setSelectedAddress(address)}
+                onClick={() => {
+                  setCurrentAddress(address);
+                }}
                 className={`${
-                  address.id === selectedAddress?.id ? 'bg-gray-200' : ''
+                  address.selected ? 'bg-gray-200' : ''
                 } border-b border-gray-300 py-1 px-3 cursor-pointer`}
               >
                 <li>{address.name}</li>
