@@ -1,8 +1,8 @@
-import AccountSidebar from '../../components/AccountSidebar';
 import { AiFillHeart } from 'react-icons/ai';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toLink } from '../../helpers/functions';
 
 export default function Favorites({ favorites, setFavorites }) {
   const [page, setPage] = useState(1);
@@ -25,14 +25,16 @@ export default function Favorites({ favorites, setFavorites }) {
               key={product.id}
               className='grid grid-flow-col border-b gap-5 items-center py-5 sm:p-5'
             >
-              <Link>
+              <Link to={toLink(`/product/${product.id}/${product.title}`)}>
                 <img
                   src={product.image}
                   className='aspect-[4/3] object-contain'
                 />
               </Link>
               <div>
-                <Link>{product.title}</Link>
+                <Link to={toLink(`/product/${product.id}/${product.title}`)}>
+                  {product.title}
+                </Link>
                 <p>{product.price}</p>
               </div>
               <button

@@ -39,19 +39,19 @@ export default function CartRouting({
         <Route
           path='payment'
           element={
-            <Payment
-              cart={cart}
-              addresses={addresses}
-              shipping={shipping}
-              clearCart={() => setCart([])}
-              clearShipping={() => setShipping([])}
-            />
+            <Payment cart={cart} addresses={addresses} shipping={shipping} />
           }
         />
         <Route
           path='success'
           element={
-            <Success cart={cart} addresses={addresses} shipping={shipping} />
+            <Success
+              cart={cart}
+              clearCart={() => setCart([])}
+              clearShipping={() => setShipping([])}
+              addresses={addresses}
+              shipping={shipping}
+            />
           }
         />
       </Routes>

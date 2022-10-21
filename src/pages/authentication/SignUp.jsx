@@ -6,7 +6,7 @@ import { useFormValidation } from '../../hooks/useFormValidation';
 export default function SignUp() {
   const [error, setError] = useState('');
 
-  const { createUser } = UserAuth();
+  const { createUser, authenticate } = UserAuth();
   const navigate = useNavigate();
 
   const {
@@ -22,9 +22,11 @@ export default function SignUp() {
     setError('');
     try {
       await createUser(email, password);
-      navigate('/account');
     } catch (e) {
       setError(e.message);
+    } finally {
+      authenticate();
+      navigate('/account');
     }
   }
   return (

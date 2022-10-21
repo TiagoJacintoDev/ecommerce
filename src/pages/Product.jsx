@@ -27,7 +27,7 @@ export default function Product({ favorites, setFavorites, setCart }) {
             <div className='flex gap-1 items-center'>
               Add to Favorites
               <FavoriteButton
-                id={+id}
+                product={currentProduct}
                 favorites={favorites}
                 setFavorites={setFavorites}
               />
@@ -69,7 +69,7 @@ export default function Product({ favorites, setFavorites, setCart }) {
           >
             <span className='self-end'>
               <FavoriteButton
-                id={product.id}
+                product={product}
                 favorites={favorites}
                 setFavorites={setFavorites}
               />

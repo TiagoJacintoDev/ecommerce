@@ -19,16 +19,18 @@ export default function Login() {
     defaultPasswordPatternMessage,
   } = useFormValidation();
 
-  const { logIn } = UserAuth();
+  const { logIn, authenticate } = UserAuth();
   const navigate = useNavigate();
 
   async function onSubmit({ email, password }) {
     try {
       await logIn(email, password);
-      navigate('/account');
     } catch (e) {
       setIsShowingError(true);
       setError(e.message);
+    } finally {
+      authenticate();
+      navigate('/account');
     }
   }
 

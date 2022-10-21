@@ -3,7 +3,7 @@ import { UserAuth } from '../../../context/AuthContext';
 import { useFormValidation } from '../../../hooks/useFormValidation';
 
 export default function ChangePassword() {
-  const { changePassword } = UserAuth();
+  const { changePassword, authenticate } = UserAuth();
   const [error, setError] = useState('');
 
   const {
@@ -20,8 +20,10 @@ export default function ChangePassword() {
       await changePassword(password);
     } catch (e) {
       setError(e.message);
+    } finally {
+      reset({ password: '' });
+      authenticate();
     }
-    reset({ password: '' });
   }
 
   return (

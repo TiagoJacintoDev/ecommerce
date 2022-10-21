@@ -28,11 +28,7 @@ export default function Header() {
           <img className='h-full' src={Logo} />
         </Link>
         {isLaptop && <SearchBar />}
-        {user ? (
-          <Link to='/account'>
-            <MdAccountCircle size={38} />
-          </Link>
-        ) : (
+        {user === null || Object.keys(user).length === 0 ? (
           <div className='flex gap-4 items-center font-semibold'>
             <Link to='/login' className=''>
               Login
@@ -42,11 +38,17 @@ export default function Header() {
               Sign Up
             </Link>
           </div>
+        ) : (
+          <Link to='/account'>
+            <MdAccountCircle size={38} />
+          </Link>
         )}
         <Link to='/cart'>
           <FaShoppingCart size={33} />
         </Link>
-        {isMenuOpen && <CategoriesMenu closeMenu={() => setIsMenuOpen(false)} />}
+        {isMenuOpen && (
+          <CategoriesMenu closeMenu={() => setIsMenuOpen(false)} />
+        )}
       </div>
     </div>
   );

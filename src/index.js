@@ -10,15 +10,13 @@ import EcommerceContextProvider from './context/EcommerceContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <AuthContextProvider>
-          <EcommerceContextProvider>
-            <App />
-          </EcommerceContextProvider>
-        </AuthContextProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
-  </React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <EcommerceContextProvider>
+          <App />
+        </EcommerceContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
+  </QueryClientProvider>
 );

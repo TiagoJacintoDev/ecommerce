@@ -66,11 +66,13 @@ export default function Cart({ cart, setCart }) {
         ) : (
           <Link to='/'>Start Buying</Link>
         )}
-        <Link to='/checkout/delivery'>
-          <button className='bg-accent text-white py-2 px-16 rounded-md'>
-            PAY
-          </button>
-        </Link>
+        {cart.length > 0 && (
+          <Link to='/checkout/delivery'>
+            <button className='bg-accent text-white py-2 px-16 rounded-md'>
+              PAY
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { useFormValidation } from '../../../hooks/useFormValidation';
 
 export default function ChangeEmail() {
   const [error, setError] = useState('');
-  const { changeEmail } = UserAuth();
+  const { changeEmail, authenticate } = UserAuth();
 
   console.log(error);
 
@@ -22,8 +22,10 @@ export default function ChangeEmail() {
       await changeEmail(email);
     } catch (e) {
       setError(e.message);
+    } finally {
+      reset({ email: '' });
+      authenticate();
     }
-    reset({ email: '' });
   }
 
   return (
