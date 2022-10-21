@@ -60,6 +60,25 @@
   @apply border p-2 outline-none rounded-md w-full;
 }
 
+.counter-list {
+  counter-reset: section;
+}
+
+.marker-accent-rounded::before {
+  counter-increment: section;
+  content: counter(section);
+  position: absolute;
+  left: -2rem;
+  top: 50%;
+  translate: 0 -50%;
+  color: white;
+  background-color: rgb(241 90 36);
+  text-align: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 1000px;
+}
+
 *,
 *::before,
 *::after {
