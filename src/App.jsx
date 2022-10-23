@@ -1,6 +1,6 @@
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { useSessionStorage } from './hooks/useSessionStorage';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useMatch } from 'react-router-dom';
 
 import Header from './components/Header';
 import Category from './pages/Category';
@@ -12,6 +12,7 @@ import Product from './pages/Product';
 import AccountRouting from './components/routing/AccountRouting';
 import CheckoutRouting from './components/routing/CheckoutRouting';
 import ProtectedAuthRoute from './components/routing/protectors/ProtectedAuthRoute';
+import Footer from './components/Footer';
 
 export default function App() {
   const [cart, setCart] = useLocalStorage('cart');
@@ -21,9 +22,13 @@ export default function App() {
 
   const [shipping, setShipping] = useSessionStorage();
 
+  const checkoutPath = useMatch({ path: '/checkout', end: false });
+
   return (
     <>
-      <Header />
+      {(checkoutPath === null || Object.keys(checkoutPath).length === 0) && (
+        <Header />
+      )}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route
@@ -84,6 +89,9 @@ export default function App() {
           }
         />
       </Routes>
+      {(checkoutPath === null || Object.keys(checkoutPath).length === 0) && (
+        <Footer />
+      )}
     </>
   );
 }
