@@ -7,6 +7,7 @@ import { queryClient } from './services/queryClient';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
 import EcommerceContextProvider from './context/EcommerceContext';
+import ScrollToTop from './hooks/ScrollToTopOnPageChange';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,6 +15,7 @@ root.render(
     <BrowserRouter>
       <AuthContextProvider>
         <EcommerceContextProvider>
+          <ScrollToTop />
           <App />
         </EcommerceContextProvider>
       </AuthContextProvider>
