@@ -24,10 +24,13 @@ export default function Header() {
           <GiHamburgerMenu size={32} />
           MENU
         </button>
+
         <Link to='/' className='h-3/4'>
           <img className='h-full' src={Logo} />
         </Link>
+
         {isLaptop && <SearchBar />}
+
         {!user || Object.keys(user).length === 0 ? (
           <div className='flex gap-4 items-center font-semibold'>
             <Link to='/login' className=''>
@@ -43,9 +46,11 @@ export default function Header() {
             <MdAccountCircle size={38} />
           </Link>
         )}
+
         <Link to='/cart'>
           <FaShoppingCart size={33} />
         </Link>
+
         {isMenuOpen && (
           <CategoriesMenu closeMenu={() => setIsMenuOpen(false)} />
         )}

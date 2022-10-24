@@ -23,12 +23,14 @@ export default function Home() {
             className='mt-4 hover:scale-105 transition-transform'
             key={category}
           >
-            <img
-              key={category}
-              className='aspect-square object-contain'
-              src={getRandomProductImageOfCategory(category)}
-            />
-            <p className='text-center'>{lowerFirst(category)}</p>
+            <Link to={`/categories/${category}`}>
+              <img
+                key={category}
+                className='aspect-square object-contain'
+                src={getRandomProductImageOfCategory(category)}
+              />
+              <p className='text-center'>{lowerFirst(category)}</p>
+            </Link>
           </div>
         ))}
       </div>
@@ -37,7 +39,7 @@ export default function Home() {
           <h6 className='mt-8 mb-5 text-xl'>
             {lowerFirst(category)}{' '}
             <Link
-              to={`/category/${category}`}
+              to={`/categories/${category}`}
               className='text-accent text-base ml-3'
             >
               See more {'>'}

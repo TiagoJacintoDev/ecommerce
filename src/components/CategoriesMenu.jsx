@@ -6,7 +6,7 @@ import { lowerFirst } from '../helpers/functions';
 export default function CategoriesMenu({ closeMenu }) {
   const [, categories] = EcommerceData();
   return (
-    <div className='absolute w-64 top-2 left-2 bg-white p-8 rounded-lg border-2 border-black'>
+    <div className='absolute w-64 top-2 left-2 bg-white p-8 rounded-lg border-2 border-black z-10'>
       <div className='flex justify-between items-center mb-2 font-semibold'>
         MENU
         <button onClick={closeMenu}>

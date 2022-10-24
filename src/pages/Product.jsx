@@ -16,7 +16,7 @@ export default function Product({ favorites, setFavorites, setCart }) {
 
   return (
     <div className='container mx-auto'>
-      <div className='grid sm:grid-flow-col auto-cols-fr gap-10 my-10'>
+      <div className='grid sm:grid-flow-col auto-cols-fr gap-10'>
         <img
           className='aspect-[4/3] object-contain m-auto'
           src={currentProduct.image}
@@ -56,7 +56,7 @@ export default function Product({ favorites, setFavorites, setCart }) {
         </div>
       </div>
       <div>
-        <h2 className='text-2xl font-bold mb-2'>Product Description</h2>
+        <h2 className='text-2xl font-bold mt-5 mb-2'>Product Description</h2>
         <p>{currentProduct.description}</p>
       </div>
 

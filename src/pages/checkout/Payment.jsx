@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import CheckoutHeader from '../../components/CheckoutHeader';
 import CheckoutProducts from '../../components/CheckoutProducts';
+import { v4 } from 'uuid';
 
 export default function Payment({
   addresses,
@@ -53,6 +54,7 @@ export default function Payment({
                   setBoughtProducts(lastState => [
                     ...lastState,
                     {
+                      id: v4(),
                       subTotal,
                       products: cart,
                       selectedAddress: { ...selectedAddress },

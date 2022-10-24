@@ -11,7 +11,7 @@ export default function BoughtProducts({ boughtProducts }) {
         </p>
         <div className='[&>*:not(:last-child)]:mb-10'>
           {boughtProducts.map(info => (
-            <div className='border border-gray-300'>
+            <div key={info.id} className='border border-gray-300'>
               <p className='bg-white pt-1.5 pb-2 px-2 border-b border-gray-300'>
                 Order from <strong>{info.date}</strong>
               </p>

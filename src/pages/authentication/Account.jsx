@@ -14,7 +14,7 @@ export default function Account() {
         This is your reserved area. Here you can manage your personal data, or
         create and manage your addresses.
       </p>
-      <div className='flex items-center mt-24 mb-14'>
+      <div className='flex items-center mt-16 mb-6'>
         <div className='grid grid-flow-col auto-cols-min h-[140px] justify-items-center'>
           <Link
             to='/account/favorites'

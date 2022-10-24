@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { EcommerceData } from '../../../context/EcommerceContext';
@@ -13,17 +14,17 @@ export default function InitialMenu({
 
   const firstFiveHistoryItems = history.filter((h, index) => index < 5);
 
-  const cloneProducts = [...products.data];
-  const fiveRandomProducts = getRandomProducts(products, 5);
-  const tenHighestRatedProducts = cloneProducts
-    .sort((a, b) => b.rating.rate - a.rating.rate)
-    .slice(0, 10);
+  const fiveRandomProducts = useRef(getRandomProducts(products, 5));
+  const clonedProducts = [...products.data];
+  const tenHighestRatedProducts = useRef(
+    clonedProducts.sort((a, b) => b.rating.rate - a.rating.rate).slice(0, 10)
+  );
 
   return (
     <>
       <div>
         <div className='font-semibold pb-3'>HIGHEST RATED PRODUCTS</div>
-        {tenHighestRatedProducts.map(product => (
+        {tenHighestRatedProducts.current.map(product => (
           <Link
             onClick={closeSearchMenu}
             to={toLink(`/product/${product.id}/${product.title}`)}
@@ -49,7 +50,7 @@ export default function InitialMenu({
         </div>
       </div>
       <div className='[&>*:not(:last-child)]:mb-10'>
-        {fiveRandomProducts.map(product => (
+        {fiveRandomProducts.current.map(product => (
           <div key={product.id} className='flex gap-6 items-center'>
             <Link
               onClick={closeSearchMenu}

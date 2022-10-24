@@ -45,7 +45,7 @@ export default function SearchingMenu({ search, closeSearchMenu }) {
         <div className='font-bold'>"{search}"</div>
         <Link
           onClick={closeSearchMenu}
-          to={`/category/${mostCommonCategory}`}
+          to={`/categories/${mostCommonCategory}`}
           className='search-link ml-4 hover:font-semibold'
         >
           In {lowerFirst(mostCommonCategory)}
@@ -61,12 +61,6 @@ export default function SearchingMenu({ search, closeSearchMenu }) {
             <h1>{product.title}</h1>
           </Link>
         ))}
-        <Link
-          className='search-link text-gray-600 font-semibold hover:text-gray-600'
-          to={`/search/${search}`}
-        >
-          See all results for "{search}"
-        </Link>
       </div>
       <div className='[&>*:not(:last-child)]:mb-10'>
         {filteredProducts.map(product => (
