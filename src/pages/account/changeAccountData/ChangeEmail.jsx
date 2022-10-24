@@ -6,8 +6,6 @@ export default function ChangeEmail() {
   const [error, setError] = useState('');
   const { changeEmail, authenticate } = UserAuth();
 
-  console.log(error);
-
   const {
     handleSubmit,
     register,

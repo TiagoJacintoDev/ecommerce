@@ -28,7 +28,7 @@ export default function Header() {
           <img className='h-full' src={Logo} />
         </Link>
         {isLaptop && <SearchBar />}
-        {user === null || Object.keys(user).length === 0 ? (
+        {!user || Object.keys(user).length === 0 ? (
           <div className='flex gap-4 items-center font-semibold'>
             <Link to='/login' className=''>
               Login

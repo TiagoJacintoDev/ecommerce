@@ -26,9 +26,7 @@ export default function App() {
 
   return (
     <>
-      {(checkoutPath === null || Object.keys(checkoutPath).length === 0) && (
-        <Header />
-      )}
+      {(!checkoutPath || Object.keys(checkoutPath).length === 0) && <Header />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route
@@ -51,7 +49,11 @@ export default function App() {
         <Route
           path='/account/*'
           element={
-            <AccountRouting favorites={favorites} setFavorites={setFavorites} />
+            <AccountRouting
+              boughtProducts={boughtProducts}
+              favorites={favorites}
+              setFavorites={setFavorites}
+            />
           }
         />
 
@@ -85,13 +87,12 @@ export default function App() {
               setCart={setCart}
               shipping={shipping}
               setShipping={setShipping}
+              setBoughtProducts={setBoughtProducts}
             />
           }
         />
       </Routes>
-      {(checkoutPath === null || Object.keys(checkoutPath).length === 0) && (
-        <Footer />
-      )}
+      {(!checkoutPath || Object.keys(checkoutPath).length === 0) && <Footer />}
     </>
   );
 }

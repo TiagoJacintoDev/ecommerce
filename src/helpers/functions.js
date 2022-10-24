@@ -1,6 +1,6 @@
 export const getRandomProducts = (products, quantity) => {
-  const cloneProducts = products.data.map(p => p);
-  return cloneProducts
+  const clonedProducts = [...products.data];
+  return clonedProducts
     .sort(() => 0.5 - Math.random())
     .filter((p, index) => index < quantity);
 };

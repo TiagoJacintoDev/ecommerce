@@ -44,7 +44,7 @@ export default function Favorites({ favorites, setFavorites }) {
                   );
                 }}
               >
-                <RiDeleteBin2Fill size={20} />
+                <RiDeleteBin2Fill size={25} />
               </button>
             </div>
           ) : (

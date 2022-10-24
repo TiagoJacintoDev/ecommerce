@@ -4,7 +4,7 @@ import ChangePassword from './ChangePassword';
 export default function ChangeAccountData() {
   return (
     <>
-      <div className='w-[300px]'>
+      <div className='w-[400px]'>
         <h1 className='text-2xl font-bold pb-2'>User Settings</h1>
         <ChangeEmail />
         <ChangePassword />

@@ -18,7 +18,7 @@ export default function Category({ favorites, setFavorites }) {
         {itemsInCurrentCategory.map(product => (
           <div
             key={product.id}
-            className='flex flex-col gap-3 p-3 bg-white shadow-2xl rounded-lg'
+            className='flex flex-col p-3 bg-white shadow-lg rounded-lg'
           >
             <span className='self-end'>
               <FavoriteButton
@@ -29,7 +29,7 @@ export default function Category({ favorites, setFavorites }) {
             </span>
             <Link
               to={`/product/${product.id}/${toLink(product.title)}`}
-              className='[&>*]:mb-3'
+              className='[&>*]:mb-3 flex flex-col justify-between h-full'
             >
               <img
                 src={product.image}
