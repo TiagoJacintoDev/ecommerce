@@ -4,8 +4,13 @@ import ChangeAccountData from '../../pages/account/changeAccountData/ChangeAccou
 import Favorites from '../../pages/account/Favorites';
 import ProtectedAccountRoute from './protectors/ProtectedAccountRoute';
 import AccountSidebar from '../AccountSidebar';
+import BoughtProducts from '../../pages/account/BoughtProducts';
 
-export default function AccountRouting({ favorites, setFavorites }) {
+export default function AccountRouting({
+  boughtProducts,
+  favorites,
+  setFavorites,
+}) {
   return (
     <ProtectedAccountRoute>
       <div className='account-container'>
@@ -13,6 +18,10 @@ export default function AccountRouting({ favorites, setFavorites }) {
         <Routes>
           <Route path='/' element={<Account />} />
           <Route path='/userdata' element={<ChangeAccountData />} />
+          <Route
+            path='/bought-products'
+            element={<BoughtProducts boughtProducts={boughtProducts} />}
+          />
           <Route
             path='/favorites'
             element={

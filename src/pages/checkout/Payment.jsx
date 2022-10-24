@@ -2,8 +2,21 @@ import { Link } from 'react-router-dom';
 import CheckoutHeader from '../../components/CheckoutHeader';
 import CheckoutProducts from '../../components/CheckoutProducts';
 
-export default function Payment({ addresses, cart, shipping }) {
+export default function Payment({
+  addresses,
+  cart,
+  shipping,
+  setBoughtProducts,
+}) {
   const selectedAddress = addresses.find(address => address.selected);
+  const date = new Date();
+
+  const totalCartValue = cart.reduce(
+    (preValue, curValue) => preValue + curValue.price,
+    0
+  );
+
+  const subTotal = +shipping?.price + totalCartValue;
   return (
     <>
       <CheckoutHeader pageTitle='ORDER SUMMARY' />
@@ -35,7 +48,24 @@ export default function Payment({ addresses, cart, shipping }) {
           <div className='flex flex-col gap-4'>
             <CheckoutProducts cart={cart} shipping={shipping} />
             <Link to='/checkout/success' className='self-center'>
-              <button className='py-2 w-[250px] text-white bg-accent rounded-md'>
+              <button
+                onClick={() =>
+                  setBoughtProducts(lastState => [
+                    ...lastState,
+                    {
+                      subTotal,
+                      products: cart,
+                      selectedAddress: { ...selectedAddress },
+                      shipping: { ...shipping },
+                      date: `${date.getDate()}/${date
+                        .getMonth()
+                        .toString()
+                        .padStart(2, '0')}/${date.getFullYear()}`,
+                    },
+                  ])
+                }
+                className='py-2 w-[250px] text-white bg-accent rounded-md'
+              >
                 FINISH PURCHASE
               </button>
             </Link>

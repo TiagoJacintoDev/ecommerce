@@ -12,6 +12,7 @@ export default function CartRouting({
   setCart,
   shipping,
   setShipping,
+  setBoughtProducts,
 }) {
   return (
     <ProtectedCheckoutRoute cart={cart}>
@@ -39,7 +40,12 @@ export default function CartRouting({
         <Route
           path='payment'
           element={
-            <Payment cart={cart} addresses={addresses} shipping={shipping} />
+            <Payment
+              cart={cart}
+              addresses={addresses}
+              shipping={shipping}
+              setBoughtProducts={setBoughtProducts}
+            />
           }
         />
         <Route
