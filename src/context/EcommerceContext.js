@@ -1,5 +1,6 @@
 import { useQueries } from '@tanstack/react-query';
 import { createContext, useContext } from 'react';
+import LoadingScreen from '../components/LoadingScreen';
 import { api } from '../services/api';
 
 const EcommerceContext = createContext();
@@ -29,7 +30,7 @@ export default function EcommerceContextProvider({ children }) {
   });
 
   if (ecommerceData[0].isLoading || ecommerceData[1].isLoading)
-    return <h1>Loading...</h1>;
+    return <LoadingScreen />;
 
   return (
     <EcommerceContext.Provider value={ecommerceData}>
