@@ -11,7 +11,7 @@ export default function Category({ favorites, setFavorites }) {
     .sort((a, b) => b.rating.rate - a.rating.rate);
 
   return (
-    <div className='container mx-auto py-8'>
+    <div className='container mx-auto'>
       <h1 className='text-2xl font-bold mb-3'>{lowerFirst(category)}</h1>
       <p className='mb-5'>{itemsInCurrentCategory.length} Products Found</p>
       <div className='grid xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10'>

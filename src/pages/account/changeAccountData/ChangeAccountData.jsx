@@ -1,11 +1,15 @@
 import ChangeEmail from './ChangeEmail';
 import ChangePassword from './ChangePassword';
+import { BsFillPersonFill } from 'react-icons/bs';
 
 export default function ChangeAccountData() {
   return (
     <>
       <div className='w-[400px]'>
-        <h1 className='text-2xl font-bold pb-2'>User Settings</h1>
+        <p className='flex gap-2 items-center font-bold text-xs mb-1'>
+          <BsFillPersonFill className='text-accent' size={20} /> CHANGE ACCOUNT
+          DATA
+        </p>
         <ChangeEmail />
         <ChangePassword />
       </div>

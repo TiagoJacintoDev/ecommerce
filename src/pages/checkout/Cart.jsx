@@ -13,7 +13,7 @@ export default function Cart({ cart, setCart }) {
   const isTablet = useMediaQuery({ query: `(min-width: ${ds.sm})` });
 
   return (
-    <div className='container mx-auto pt-6'>
+    <div className='container mx-auto'>
       <div className='flex justify-between items-center'>
         {isTablet && (
           <h1 className='font-bold text-3xl mb-3'>

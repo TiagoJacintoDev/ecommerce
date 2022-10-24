@@ -10,7 +10,7 @@ const ICON_SIZE = 35;
 
 export default function Footer() {
   return (
-    <div className='container mx-auto py-5'>
+    <div className='container mx-auto py-10'>
       <ul className='flex gap-5 justify-center'>
         <li>FAQs</li>
         <li>Contact Us</li>

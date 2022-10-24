@@ -29,7 +29,7 @@
 }
 
 .account-container {
-  @apply grid auto-cols-[auto_1fr] sm:grid-flow-col justify-center gap-8 container mx-auto my-10;
+  @apply grid auto-cols-[auto_1fr] sm:grid-flow-col justify-center gap-8 container mx-auto;
 }
 
 .pagination-button {
@@ -101,7 +101,7 @@ html:focus-within {
 }
 
 body {
-  @apply pt-16;
+  @apply pt-24;
 }
 
 html,
