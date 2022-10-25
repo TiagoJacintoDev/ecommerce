@@ -14,31 +14,33 @@ export default function Account() {
         This is your reserved area. Here you can manage your personal data, or
         create and manage your addresses.
       </p>
-      <div className='flex items-center mt-16 mb-6'>
-        <div className='grid grid-flow-col auto-cols-min h-[140px] justify-items-center'>
-          <Link
-            to='/account/favorites'
-            className='border border-gray-300 pt-6 w-[160px] flex flex-col items-center text-center font-semibold text-gray-400 text-sm'
-          >
-            <AiFillHeart size={33} className='text-accent-light mb-5' />
-            FAVORITES
-          </Link>
-          <Link
-            to='/account/userdata'
-            className='border border-l-0 border-gray-300 pt-6 w-[160px] flex flex-col items-center text-center font-semibold text-gray-400 text-sm'
-          >
-            <BsFillPersonFill size={33} className='text-accent-light mb-5' />
-            CHANGE ACCOUNT DATA
-          </Link>
-          <Link
-            to='/account/bought-products'
-            className='border border-l-0 border-gray-300 pt-6 w-[160px] flex flex-col items-center text-center font-semibold text-gray-400 text-sm'
-          >
-            <FaShoppingCart size={33} className='text-accent-light mb-5' />
-            BOUGHT PRODUCTS
-          </Link>
+      {
+        <div className='flex items-center mt-16 mb-6'>
+          <div className='grid md:grid-flow-col auto-cols-min h-[140px] justify-items-center'>
+            <Link
+              to='/account/favorites'
+              className='border border-gray-300 pt-6 w-[160px] flex flex-col items-center text-center font-semibold text-gray-400 text-sm'
+            >
+              <AiFillHeart size={33} className='text-accent-light mb-5' />
+              FAVORITES
+            </Link>
+            <Link
+              to='/account/userdata'
+              className='border border-l-0 border-gray-300 pt-6 w-[160px] flex flex-col items-center text-center font-semibold text-gray-400 text-sm'
+            >
+              <BsFillPersonFill size={33} className='text-accent-light mb-5' />
+              CHANGE ACCOUNT DATA
+            </Link>
+            <Link
+              to='/account/bought-products'
+              className='border border-l-0 border-gray-300 pt-6 w-[160px] flex flex-col items-center text-center font-semibold text-gray-400 text-sm'
+            >
+              <FaShoppingCart size={33} className='text-accent-light mb-5' />
+              BOUGHT PRODUCTS
+            </Link>
+          </div>
         </div>
-      </div>
+      }
     </div>
   );
 }
