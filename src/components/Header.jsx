@@ -15,7 +15,7 @@ export default function Header() {
   const isLaptop = useMediaQuery({ query: `(min-width: ${ds.md})` });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className='bg-accent fixed w-screen top-0'>
+    <div className='bg-accent fixed w-screen top-0 z-10'>
       <div className='container mx-auto h-16 flex items-center justify-between'>
         <button
           onClick={() => setIsMenuOpen(true)}
