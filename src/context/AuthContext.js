@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -6,8 +6,8 @@ import {
   onAuthStateChanged,
   updateEmail,
   updatePassword,
-} from 'firebase/auth';
-import { auth } from '../configs/firebase';
+} from "firebase/auth";
+import { auth } from "../configs/firebase";
 
 const UserContext = createContext();
 
@@ -35,7 +35,7 @@ export const AuthContextProvider = ({ children }) => {
   }
 
   function authenticate() {
-    onAuthStateChanged(auth, currentUser => {
+    onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
   }

@@ -37,7 +37,7 @@
 }
 
 .purchase-button {
-  @apply flex gap-2 items-center justify-center rounded-lg py-2 w-full font-semibold transition-all duration-500;
+  @apply flex gap-2 items-center justify-center rounded-lg py-3 font-semibold transition-all duration-500;
 }
 
 .add-to-cart-button {
@@ -45,7 +45,7 @@
 }
 
 .buy-now-button {
-  @apply bg-accent hover:bg-accent-light text-white font-semibold;
+  @apply bg-accent hover:brightness-110 text-white font-semibold;
 }
 
 .flex-center {
@@ -77,50 +77,4 @@
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 1000px;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  font: inherit;
-}
-
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
-html:focus-within {
-  scroll-behavior: smooth;
-}
-
-body {
-  @apply pt-24;
-}
-
-html,
-body {
-  height: 100%;
-  @apply bg-light-gray;
-}
-
-body {
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
-}
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
-
-img,
-picture,
-svg {
-  max-width: 100%;
-  display: block;
 }

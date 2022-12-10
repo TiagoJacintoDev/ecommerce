@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import CountriesDropdown from '../../components/CountriesDropdown';
-import { useFormValidation } from '../../hooks/useFormValidation';
-import { v4 } from 'uuid';
-import CheckoutHeader from '../../components/CheckoutHeader';
+import { useState } from "react";
+import CountriesDropdown from "../../components/CountriesDropdown";
+import { useFormValidation } from "../../hooks/useFormValidation";
+import { v4 } from "uuid";
+import CheckoutHeader from "../../components/CheckoutHeader";
 
-import CheckoutProducts from '../../components/CheckoutProducts';
-import { Link, useLocation } from 'react-router-dom';
+import CheckoutProducts from "../../components/CheckoutProducts";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Delivery({ addresses, setAddresses, cart }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -25,8 +25,8 @@ export default function Delivery({ addresses, setAddresses, cart }) {
 
   function setCurrentAddress(address) {
     if (addresses.length <= 1) return;
-    setAddresses(lastAddresses =>
-      lastAddresses.map(adr =>
+    setAddresses((lastAddresses) =>
+      lastAddresses.map((adr) =>
         adr === address
           ? {
               ...adr,
@@ -45,8 +45,8 @@ export default function Delivery({ addresses, setAddresses, cart }) {
     setIsEditingAddress(false);
 
     if (isEditingAddress) {
-      setAddresses(lastAddresses =>
-        lastAddresses.map(adr =>
+      setAddresses((lastAddresses) =>
+        lastAddresses.map((adr) =>
           adr.selected
             ? {
                 ...adr,
@@ -61,12 +61,12 @@ export default function Delivery({ addresses, setAddresses, cart }) {
         )
       );
     } else {
-      setAddresses(lastAddresses =>
-        lastAddresses.map(adr =>
+      setAddresses((lastAddresses) =>
+        lastAddresses.map((adr) =>
           adr.selected ? { ...adr, selected: false } : adr
         )
       );
-      setAddresses(lastAddresses => [
+      setAddresses((lastAddresses) => [
         ...lastAddresses,
         {
           id: v4(),
@@ -82,12 +82,12 @@ export default function Delivery({ addresses, setAddresses, cart }) {
     }
 
     reset({
-      name: '',
-      address: '',
-      postal: '',
-      city: '',
-      country: '',
-      tel: '',
+      name: "",
+      address: "",
+      postal: "",
+      city: "",
+      country: "",
+      tel: "",
     });
   }
 
@@ -95,7 +95,7 @@ export default function Delivery({ addresses, setAddresses, cart }) {
     setIsEditingAddress(true);
     setIsFormOpen(true);
 
-    reset(addresses.find(address => address.selected));
+    reset(addresses.find((address) => address.selected));
   }
 
   function cancelForm() {
@@ -103,82 +103,82 @@ export default function Delivery({ addresses, setAddresses, cart }) {
     setIsFormOpen(false);
 
     reset({
-      name: '',
-      address: '',
-      postal: '',
-      city: '',
-      country: '',
-      tel: '',
+      name: "",
+      address: "",
+      postal: "",
+      city: "",
+      country: "",
+      tel: "",
     });
   }
 
   return (
     <>
-      <CheckoutHeader pageTitle='CHOOSE ADDRESS' />
-      <div className='container mx-auto'>
-        <h1 className='font-bold text-2xl mt-5 mb-4'>
+      <CheckoutHeader pageTitle="CHOOSE ADDRESS" />
+      <div className="container mx-auto">
+        <h1 className="font-bold text-2xl mt-5 mb-4">
           Where do you want to receive the delivery?
         </h1>
-        <div className='grid items-start gap-5 sm:grid-cols-[1fr_0.75fr]'>
+        <div className="grid items-start gap-5 sm:grid-cols-[1fr_0.75fr]">
           {addresses.length === 0 || isFormOpen ? (
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className='flex flex-col py-1'>
-                <label htmlFor='name'>Name</label>
+              <div className="flex flex-col py-1">
+                <label htmlFor="name">Name</label>
                 <input
-                  {...register('name', {
+                  {...register("name", {
                     required: defaultRequiredMessage,
                   })}
-                  className='form-input'
-                  type='text'
-                  name='name'
-                  id='name'
+                  className="form-input"
+                  type="text"
+                  name="name"
+                  id="name"
                 />
                 {errors?.name?.message}
               </div>
 
-              <div className='flex flex-col py-1'>
-                <label htmlFor='address'>Address</label>
+              <div className="flex flex-col py-1">
+                <label htmlFor="address">Address</label>
                 <input
-                  {...register('address', {
+                  {...register("address", {
                     required: defaultRequiredMessage,
                   })}
-                  className='form-input'
-                  type='text'
-                  name='address'
-                  id='address'
+                  className="form-input"
+                  type="text"
+                  name="address"
+                  id="address"
                 />
                 {errors?.address?.message}
               </div>
 
-              <div className='flex flex-col py-1'>
-                <label htmlFor='postal'>Postal</label>
+              <div className="flex flex-col py-1">
+                <label htmlFor="postal">Postal</label>
                 <input
-                  {...register('postal', {
+                  {...register("postal", {
                     required: defaultRequiredMessage,
                   })}
-                  className='form-input'
-                  type='text'
-                  name='postal'
-                  id='postal'
+                  className="form-input"
+                  type="text"
+                  name="postal"
+                  id="postal"
                 />
                 {errors?.postal?.message}
               </div>
 
-              <div className='flex flex-col py-1'>
-                <label htmlFor='city'>City</label>
+              <div className="flex flex-col py-1">
+                <label htmlFor="city">City</label>
                 <input
-                  {...register('city', {
+                  {...register("city", {
                     required: defaultRequiredMessage,
                   })}
-                  className='form-input'
-                  type='text'
-                  name='city'
-                  id='city'
+                  className="form-input"
+                  type="text"
+                  name="city"
+                  id="city"
                 />
                 {errors?.city?.message}
               </div>
 
-              <div className='flex flex-col py-1'>
+              <div className="flex flex-col py-1">
                 <CountriesDropdown
                   register={register}
                   errors={errors}
@@ -186,45 +186,45 @@ export default function Delivery({ addresses, setAddresses, cart }) {
                 />
               </div>
 
-              <div className='flex flex-col py-1'>
-                <label htmlFor='tel'>Cell Phone</label>
+              <div className="flex flex-col py-1">
+                <label htmlFor="tel">Cell Phone</label>
                 <input
-                  {...register('tel', {
+                  {...register("tel", {
                     required: defaultRequiredMessage,
                     pattern: {
                       value: cellNumberPattern,
                       message: defaultCellPhonePatternMessage,
                     },
                   })}
-                  className='form-input'
-                  type='tel'
-                  name='tel'
-                  id='tel'
+                  className="form-input"
+                  type="tel"
+                  name="tel"
+                  id="tel"
                 />
                 {errors?.tel?.message}
               </div>
 
-              <div className='flex items-center justify-between mt-3'>
+              <div className="flex items-center justify-between mt-3">
                 <button
-                  type='button'
+                  type="button"
                   onClick={cancelForm}
-                  className='form-button'
+                  className="form-button"
                 >
                   CANCEL
                 </button>
-                <button className='form-button'>SAVE</button>
+                <button className="form-button">SAVE</button>
               </div>
             </form>
           ) : (
             <div>
-              {addresses.map(address => (
+              {addresses.map((address) => (
                 <ul
                   key={address.id}
                   onClick={() => {
                     setCurrentAddress(address);
                   }}
                   className={`${
-                    address.selected ? 'bg-gray-200' : ''
+                    address.selected ? "bg-gray-200" : ""
                   } border-b border-gray-300 py-1 px-3 cursor-pointer`}
                 >
                   <li>{address.name}</li>
@@ -235,26 +235,26 @@ export default function Delivery({ addresses, setAddresses, cart }) {
                   <li>{address.tel}</li>
                 </ul>
               ))}
-              <div className='flex items-center justify-between mt-6'>
+              <div className="flex items-center justify-between mt-6">
                 <button
                   onClick={() => setIsFormOpen(true)}
-                  className='form-button'
+                  className="form-button"
                 >
                   CREATE NEW
                 </button>
-                <button onClick={editAddress} className='form-button'>
+                <button onClick={editAddress} className="form-button">
                   EDIT
                 </button>
               </div>
             </div>
           )}
-          <div className='flex flex-col gap-4'>
+          <div className="flex flex-col gap-4">
             <CheckoutProducts cart={cart} />
             <Link
-              to={`/checkout/${search ? 'payment' : 'shipping'}`}
-              className='self-center'
+              to={`/checkout/${search ? "payment" : "shipping"}`}
+              className="self-center"
             >
-              <button className='py-2 w-[250px] text-white bg-accent rounded-md'>
+              <button className="py-2 w-[250px] text-white bg-accent rounded-md">
                 PROCEED TO CHECKOUT
               </button>
             </Link>

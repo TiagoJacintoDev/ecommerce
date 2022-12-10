@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-export const useSessionStorage = key => {
+export const useSessionStorage = (key) => {
   const [state, setState] = useState(
     JSON.parse(sessionStorage.getItem(`${key}`)) || []
   );

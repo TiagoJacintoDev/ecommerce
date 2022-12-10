@@ -1,9 +1,9 @@
-import { Route, Routes } from 'react-router-dom';
-import Delivery from '../../pages/checkout/Delivery';
-import Payment from '../../pages/checkout/Payment';
-import Shipping from '../../pages/checkout/Shipping';
-import Success from '../../pages/checkout/Success';
-import ProtectedCheckoutRoute from './protectors/ProtectedCheckoutRoute';
+import { Route, Routes } from "react-router-dom";
+import Delivery from "../../pages/checkout/Delivery";
+import Payment from "../../pages/checkout/Payment";
+import Shipping from "../../pages/checkout/Shipping";
+import Success from "../../pages/checkout/Success";
+import ProtectedCheckoutRoute from "./protectors/ProtectedCheckoutRoute";
 
 export default function CartRouting({
   addresses,
@@ -18,7 +18,7 @@ export default function CartRouting({
     <ProtectedCheckoutRoute cart={cart}>
       <Routes>
         <Route
-          path='delivery'
+          path="delivery"
           element={
             <Delivery
               addresses={addresses}
@@ -28,7 +28,7 @@ export default function CartRouting({
           }
         />
         <Route
-          path='shipping'
+          path="shipping"
           element={
             <Shipping
               cart={cart}
@@ -38,7 +38,7 @@ export default function CartRouting({
           }
         />
         <Route
-          path='payment'
+          path="payment"
           element={
             <Payment
               cart={cart}
@@ -49,7 +49,7 @@ export default function CartRouting({
           }
         />
         <Route
-          path='success'
+          path="success"
           element={
             <Success
               cart={cart}

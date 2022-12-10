@@ -1,29 +1,29 @@
-import { useQueries } from '@tanstack/react-query';
-import { createContext, useContext } from 'react';
-import LoadingScreen from '../components/LoadingScreen';
-import { api } from '../services/api';
+import { useQueries } from "@tanstack/react-query";
+import { createContext, useContext } from "react";
+import LoadingScreen from "../components/LoadingScreen";
+import { api } from "../services/api";
 
 const EcommerceContext = createContext();
 
 export default function EcommerceContextProvider({ children }) {
   async function queryCategories() {
-    const response = await api.get('/products/categories');
+    const response = await api.get("/products/categories");
     return response.data;
   }
 
   async function queryProducts() {
-    const response = await api.get('products');
+    const response = await api.get("products");
     return response.data;
   }
 
   const ecommerceData = useQueries({
     queries: [
       {
-        queryKey: ['products'],
+        queryKey: ["products"],
         queryFn: queryProducts,
       },
       {
-        queryKey: ['categories'],
+        queryKey: ["categories"],
         queryFn: queryCategories,
       },
     ],

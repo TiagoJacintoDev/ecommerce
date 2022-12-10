@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { UserAuth } from '../../../context/AuthContext';
-import { useFormValidation } from '../../../hooks/useFormValidation';
+import { useState } from "react";
+import { UserAuth } from "../../../context/AuthContext";
+import { useFormValidation } from "../../../hooks/useFormValidation";
 
 export default function ChangeEmail() {
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const { changeEmail, authenticate } = UserAuth();
 
   const {
@@ -21,7 +21,7 @@ export default function ChangeEmail() {
     } catch (e) {
       setError(e.message);
     } finally {
-      reset({ email: '' });
+      reset({ email: "" });
       authenticate();
     }
   }
@@ -29,22 +29,22 @@ export default function ChangeEmail() {
   return (
     <>
       <form onSubmit={handleSubmit(onEmailSubmit)}>
-        <div className='flex flex-col py-2'>
-          <label className='py-2 font-medium' htmlFor='email'>
+        <div className="flex flex-col py-2">
+          <label className="py-2 font-medium" htmlFor="email">
             Email Address
           </label>
           <input
-            {...register('email', {
+            {...register("email", {
               required: defaultRequiredMessage,
-              pattern: { value: emailPattern, message: 'Email is invalid' },
+              pattern: { value: emailPattern, message: "Email is invalid" },
             })}
-            className='authentication-input'
-            type='email'
-            name='email'
-            id='email'
+            className="authentication-input"
+            type="email"
+            name="email"
+            id="email"
           />
           {errors?.email?.message}
-          <button className='authentication-button'>CHANGE EMAIL</button>
+          <button className="authentication-button">CHANGE EMAIL</button>
         </div>
       </form>
     </>

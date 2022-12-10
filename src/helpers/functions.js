@@ -5,10 +5,10 @@ export const getRandomProducts = (products, quantity) => {
     .filter((p, index) => index < quantity);
 };
 
-export const lowerFirst = string => {
+export const lowerFirst = (string) => {
   return string[0].toUpperCase() + string.slice(1);
 };
 
-export const toLink = string => {
-  return string.split(' ').join('-').toLowerCase();
+export const toLink = (string) => {
+  return string.split(" ").join("-").toLowerCase();
 };

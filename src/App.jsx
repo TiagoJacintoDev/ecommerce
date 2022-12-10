@@ -1,36 +1,36 @@
-import { useLocalStorage } from './hooks/useLocalStorage';
-import { useSessionStorage } from './hooks/useSessionStorage';
-import { Route, Routes, useMatch } from 'react-router-dom';
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import { useSessionStorage } from "./hooks/useSessionStorage";
+import { Route, Routes, useMatch } from "react-router-dom";
 
-import Header from './components/Header';
-import Category from './pages/Category';
-import Home from './pages/Home';
-import Login from './pages/authentication/Login';
-import SignUp from './pages/authentication/SignUp';
-import Cart from './pages/checkout/Cart';
-import Product from './pages/Product';
-import AccountRouting from './components/routing/AccountRouting';
-import CheckoutRouting from './components/routing/CheckoutRouting';
-import ProtectedAuthRoute from './components/routing/protectors/ProtectedAuthRoute';
-import Footer from './components/Footer';
+import Header from "./components/Header";
+import Category from "./pages/Category";
+import Home from "./pages/Home";
+import Login from "./pages/authentication/Login";
+import SignUp from "./pages/authentication/SignUp";
+import Cart from "./pages/checkout/Cart";
+import Product from "./pages/Product";
+import AccountRouting from "./components/routing/AccountRouting";
+import CheckoutRouting from "./components/routing/CheckoutRouting";
+import ProtectedAuthRoute from "./components/routing/protectors/ProtectedAuthRoute";
+import Footer from "./components/Footer";
 
 export default function App() {
-  const [cart, setCart] = useLocalStorage('cart');
-  const [favorites, setFavorites] = useLocalStorage('favorites');
-  const [addresses, setAddresses] = useLocalStorage('addresses');
-  const [boughtProducts, setBoughtProducts] = useLocalStorage('boughtProducts');
+  const [cart, setCart] = useLocalStorage("cart");
+  const [favorites, setFavorites] = useLocalStorage("favorites");
+  const [addresses, setAddresses] = useLocalStorage("addresses");
+  const [boughtProducts, setBoughtProducts] = useLocalStorage("boughtProducts");
 
   const [shipping, setShipping] = useSessionStorage();
 
-  const checkoutPath = useMatch({ path: '/checkout', end: false });
+  const checkoutPath = useMatch({ path: "/checkout", end: false });
 
   return (
-    <>
+    <div className="pt-24 bg-light-gray">
       {(!checkoutPath || Object.keys(checkoutPath).length === 0) && <Header />}
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route
-          path='/login'
+          path="/login"
           element={
             <ProtectedAuthRoute>
               <Login />
@@ -38,7 +38,7 @@ export default function App() {
           }
         />
         <Route
-          path='/signup'
+          path="/signup"
           element={
             <ProtectedAuthRoute>
               <SignUp />
@@ -47,7 +47,7 @@ export default function App() {
         />
 
         <Route
-          path='/account/*'
+          path="/account/*"
           element={
             <AccountRouting
               boughtProducts={boughtProducts}
@@ -58,14 +58,14 @@ export default function App() {
         />
 
         <Route
-          path='/categories/:category'
+          path="/categories/:category"
           element={
             <Category favorites={favorites} setFavorites={setFavorites} />
           }
         />
 
         <Route
-          path='/product/:id/:product'
+          path="/product/:id/:product"
           element={
             <Product
               favorites={favorites}
@@ -75,10 +75,10 @@ export default function App() {
           }
         />
 
-        <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
+        <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
 
         <Route
-          path='/checkout/*'
+          path="/checkout/*"
           element={
             <CheckoutRouting
               addresses={addresses}
@@ -93,6 +93,6 @@ export default function App() {
         />
       </Routes>
       {(!checkoutPath || Object.keys(checkoutPath).length === 0) && <Footer />}
-    </>
+    </div>
   );
 }

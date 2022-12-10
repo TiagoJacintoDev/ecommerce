@@ -1,26 +1,26 @@
 const month = [
-  'Jan',
-  'Feb',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'Aug',
-  'Sept',
-  'Oct',
-  'Nov',
-  'Dec',
+  "Jan",
+  "Feb",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "Aug",
+  "Sept",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
 
 const dayOfWeek = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
 ];
 
 function setDeliveryDate(offset) {
@@ -35,15 +35,15 @@ function setDeliveryDate(offset) {
 export const shippingOptions = [
   {
     id: 1,
-    title: 'Normal',
+    title: "Normal",
     deliveryDate: setDeliveryDate(4),
-    price: '2.99',
+    price: "2.99",
   },
   {
     id: 2,
-    title: 'Express',
+    title: "Express",
     deliveryDate: setDeliveryDate(2),
-    price: '4.99',
+    price: "4.99",
   },
-  { id: 3, title: 'Next Day', deliveryDate: setDeliveryDate(1), price: '6.99' },
+  { id: 3, title: "Next Day", deliveryDate: setDeliveryDate(1), price: "6.99" },
 ];
