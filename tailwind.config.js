@@ -19,7 +19,7 @@ module.exports = {
         XSmax: { max: "400px" },
       },
       animation: {
-        rotate: "rotate 2s linear infinite",
+        rotate: "rotate 5s linear infinite",
       },
       keyframes: {
         rotate: {

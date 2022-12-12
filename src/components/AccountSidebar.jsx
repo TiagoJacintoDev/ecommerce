@@ -10,7 +10,7 @@ const ICON_SIZE = 20;
 export default function AccountSidebar() {
   const { logout, authenticate } = UserAuth();
 
-  async function onSubmit({ email, password }) {
+  async function onLogout({ email, password }) {
     try {
       await logout();
     } finally {
@@ -33,7 +33,7 @@ export default function AccountSidebar() {
           <AiFillHeart size={ICON_SIZE} />
           Favorites
         </Link>
-        <button onClick={onSubmit} className="flex items-center gap-2">
+        <button onClick={onLogout} className="flex items-center gap-2">
           <BiLogOut size={ICON_SIZE} />
           Logout
         </button>
