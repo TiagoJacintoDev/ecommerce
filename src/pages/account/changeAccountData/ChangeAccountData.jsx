@@ -13,9 +13,6 @@ export default function ChangeAccountData() {
         <ChangeEmail />
         <ChangePassword />
       </div>
-      {/* {isShowingError && (
-        <FalseAuthentication closeModal={() => setIsShowingError(false)} />
-      )} */}
     </>
   );
 }

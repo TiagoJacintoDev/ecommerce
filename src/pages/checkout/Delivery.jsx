@@ -1,10 +1,9 @@
 import { useState } from "react";
-import CountriesDropdown from "../../components/CountriesDropdown";
+import CountriesDropdown from "../../components/elements/CountriesDropdown";
 import { useFormValidation } from "../../hooks/useFormValidation";
 import { v4 } from "uuid";
-import CheckoutHeader from "../../components/CheckoutHeader";
-
-import CheckoutProducts from "../../components/CheckoutProducts";
+import CheckoutHeader from "../../components/elements/CheckoutHeader";
+import CheckoutProducts from "../../components/elements/CheckoutProducts";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Delivery({ addresses, setAddresses, cart }) {

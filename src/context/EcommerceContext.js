@@ -1,6 +1,6 @@
 import { useQueries } from "@tanstack/react-query";
 import { createContext, useContext } from "react";
-import LoadingScreen from "../components/LoadingScreen";
+import LoadingScreen from "../components/elements/LoadingScreen";
 import { api } from "../services/api";
 
 const EcommerceContext = createContext();

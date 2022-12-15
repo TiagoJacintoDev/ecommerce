@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import CheckoutProducts from "../../components/CheckoutProducts";
+import CheckoutProducts from "../../components/elements/CheckoutProducts";
 import { useEffect } from "react";
-import CheckoutHeader from "../../components/CheckoutHeader";
+import CheckoutHeader from "../../components/elements/CheckoutHeader";
 
 export default function Success({
   cart,

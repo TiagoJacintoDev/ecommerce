@@ -3,7 +3,7 @@ import Account from "../../pages/authentication/Account";
 import ChangeAccountData from "../../pages/account/changeAccountData/ChangeAccountData";
 import Favorites from "../../pages/account/Favorites";
 import ProtectedAccountRoute from "./protectors/ProtectedAccountRoute";
-import AccountSidebar from "../AccountSidebar";
+import AccountSidebar from "../elements/AccountSidebar";
 import BoughtProducts from "../../pages/account/BoughtProducts";
 import { useMediaQuery } from "react-responsive";
 import { deviceSizes as ds } from "../../helpers/variables";

@@ -2,7 +2,7 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useSessionStorage } from "./hooks/useSessionStorage";
 import { Route, Routes, useMatch } from "react-router-dom";
 
-import Header from "./components/Header";
+import Header from "./components/elements/Header";
 import Category from "./pages/Category";
 import Home from "./pages/Home";
 import Login from "./pages/authentication/Login";
@@ -12,7 +12,7 @@ import Product from "./pages/Product";
 import AccountRouting from "./components/routing/AccountRouting";
 import CheckoutRouting from "./components/routing/CheckoutRouting";
 import ProtectedAuthRoute from "./components/routing/protectors/ProtectedAuthRoute";
-import Footer from "./components/Footer";
+import Footer from "./components/elements/Footer";
 
 export default function App() {
   const [cart, setCart] = useLocalStorage("cart");
@@ -69,6 +69,7 @@ export default function App() {
           element={
             <Product
               favorites={favorites}
+              cart={cart}
               setFavorites={setFavorites}
               setCart={setCart}
             />

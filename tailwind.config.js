@@ -27,6 +27,9 @@ module.exports = {
           "100%": { transform: "rotate(360deg)" },
         },
       },
+      boxShadow: {
+        strong: "rgba(6, 24, 44, 0.4) 0px 0px 0px 1.5px",
+      },
     },
   },
   plugins: [],

@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { lowerFirst, toLink } from "../helpers/functions";
 import { EcommerceData } from "../context/EcommerceContext";
-import FavoriteButton from "../components/FavoriteButton";
+import FavoriteButton from "../components/elements/FavoriteButton";
 
 export default function Category({ favorites, setFavorites }) {
   const { category } = useParams();

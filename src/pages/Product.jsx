@@ -1,10 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
-import FavoriteButton from "../components/FavoriteButton";
+import FavoriteButton from "../components/elements/FavoriteButton";
 import { toLink } from "../helpers/functions";
 import { EcommerceData } from "../context/EcommerceContext";
+import { useState } from "react";
 
-export default function Product({ favorites, setFavorites, setCart }) {
+export default function Product({ favorites, cart, setFavorites, setCart }) {
+  const [productQuantity, setProductQuantity] = useState(1);
   const { id } = useParams();
   const [products] = EcommerceData();
 
@@ -13,6 +15,26 @@ export default function Product({ favorites, setFavorites, setCart }) {
   const relatedProducts = products.data.filter(
     (product) => currentProduct.category === product.category
   );
+
+  const addProduct = () => {
+    const cartProduct = cart.find((item) => item.id === currentProduct.id);
+    const quantity = +productQuantity;
+
+    if (cartProduct) {
+      setCart((lastCart) =>
+        lastCart.map((item, index) =>
+          item.id === currentProduct.id
+            ? {
+                ...item,
+                quantity: lastCart[index].quantity + quantity,
+              }
+            : item
+        )
+      );
+    } else {
+      setCart((lastCart) => [...lastCart, { ...currentProduct, quantity }]);
+    }
+  };
 
   return (
     <div className="container mx-auto">
@@ -34,12 +56,12 @@ export default function Product({ favorites, setFavorites, setCart }) {
           <div className="flex my-3 gap-3">
             <input
               type="text"
+              value={productQuantity}
+              onChange={(e) => setProductQuantity(e.target.value)}
               className="w-12 rounded-md border border-gray-600 text-center"
             />
             <button
-              onClick={() =>
-                setCart((lastCart) => [...lastCart, currentProduct])
-              }
+              onClick={addProduct}
               className="purchase-button add-to-cart-button flex-1"
             >
               ADD TO CART

@@ -33,7 +33,11 @@ export default function BoughtProducts({ boughtProducts }) {
                       >
                         <p>{product.title}</p>
                       </Link>
-                      <span className="font-bold">${product.price}</span>
+                      <div className="flex flex-col items-center gap-1">
+                        <span>{product.quantity}</span>
+                        <hr className="border border-gray-400 w-7" />
+                        <span className="font-bold">${product.price}</span>
+                      </div>
                     </div>
                   ))}
                 </div>

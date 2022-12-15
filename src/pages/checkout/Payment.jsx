@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import CheckoutHeader from "../../components/CheckoutHeader";
-import CheckoutProducts from "../../components/CheckoutProducts";
+import CheckoutHeader from "../../components/elements/CheckoutHeader";
+import CheckoutProducts from "../../components/elements/CheckoutProducts";
 import { v4 } from "uuid";
 
 export default function Payment({
@@ -13,7 +13,7 @@ export default function Payment({
   const date = new Date();
 
   const totalCartValue = cart.reduce(
-    (preValue, curValue) => preValue + curValue.price,
+    (preValue, curValue) => preValue + curValue.price * curValue.quantity,
     0
   );
 

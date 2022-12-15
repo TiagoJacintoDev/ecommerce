@@ -6,9 +6,29 @@ import { useMediaQuery } from "react-responsive";
 
 export default function Cart({ cart, setCart }) {
   const totalCartValue = cart.reduce(
-    (preValue, curValue) => preValue + curValue.price,
+    (preValue, curValue) => preValue + curValue.price * curValue.quantity,
     0
   );
+
+  const totalCartQuantity = cart.reduce(
+    (preValue, curValue) => preValue + curValue.quantity,
+    0
+  );
+
+  const changeProductQuantity = (e, product) => {
+    setCart((lastCart) =>
+      lastCart.map((item) => {
+        if (item.id === product.id) {
+          return {
+            ...item,
+            quantity: +e.target.value,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+  };
 
   const isTablet = useMediaQuery({ query: `(min-width: ${ds.sm})` });
 
@@ -21,7 +41,7 @@ export default function Cart({ cart, setCart }) {
           </h1>
         )}
         <span>
-          {cart.length} item{cart.length > 1 && "s"} |{" "}
+          {totalCartQuantity} item{totalCartQuantity > 1 && "s"} |{" "}
           <span className="font-bold">${totalCartValue}</span>
         </span>
       </div>
@@ -29,7 +49,7 @@ export default function Cart({ cart, setCart }) {
         {cart.map((product) => (
           <div
             key={product.id}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-6 items-center py-5 sm:py-[2%] border-b border-gray-300 sm:border-0"
+            className="grid grid-cols-2 sm:grid-cols-5 gap-x-4 gap-y-6 items-center py-5 sm:py-[2%] border-b border-gray-300 sm:border-0"
           >
             <img
               src={product.image}
@@ -53,6 +73,18 @@ export default function Cart({ cart, setCart }) {
                 <BsFillTrashFill size={20} />
                 Remove
               </button>
+            </span>
+            <span className="flex justify-end">
+              <select
+                className="py-1.5 px-3 border border-gray-500 rounded-sm focus-visible:shadow-strong focus-visible:shadow-indigo-500 outline-none"
+                value={product.quantity}
+                onChange={(e) => changeProductQuantity(e, product)}
+              >
+                {Array.from(Array(10).keys()).map(
+                  (item, index) =>
+                    index > 0 && <option key={item}>{item}</option>
+                )}
+              </select>
             </span>
             <span className="flex items-center sm:justify-end font-bold">
               ${product.price}

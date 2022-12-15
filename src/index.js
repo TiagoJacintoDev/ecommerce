@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext";
 import EcommerceContextProvider from "./context/EcommerceContext";
 import ScrollToTop from "./hooks/ScrollToTopOnPageChange";
-import { ComposedComponents } from "./components/ComposedComponents";
+import { ComposedComponents } from "./components/elements/ComposedComponents";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

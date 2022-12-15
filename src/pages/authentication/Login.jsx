@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
-import IncorrectAuthentication from "../../components/IncorrectAuthentication";
 import { useFormValidation } from "../../hooks/useFormValidation";
+import IncorrectAuthentication from "../../components/elements/IncorrectAuthentication";
 
 export default function Login() {
   const [error, setError] = useState("");

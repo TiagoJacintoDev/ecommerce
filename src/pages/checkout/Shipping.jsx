@@ -1,9 +1,9 @@
-import CheckoutProducts from "../../components/CheckoutProducts";
+import CheckoutProducts from "../../components/elements/CheckoutProducts";
 import { shippingOptions } from "../../data/shippingOptions";
 import { BsCircle, BsCheckCircleFill } from "react-icons/bs";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import CheckoutHeader from "../../components/CheckoutHeader";
+import CheckoutHeader from "../../components/elements/CheckoutHeader";
 
 export default function Shipping({ cart, setShipping }) {
   const [selectedShipping, setSelectedShipping] = useState(shippingOptions[0]);
