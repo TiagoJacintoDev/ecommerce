@@ -3,7 +3,7 @@ import Logo from "../../assets/logo.svg";
 
 export default function LoadingScreen() {
   return (
-    <div className="absolute top-1/2 w-full flex justify-center items-center">
+    <div className="flex justify-center items-center">
       <img src={LoadingCircle} className="animate-rotate absolute" />
       <img src={Logo} className="w-14 absolute" />
     </div>

@@ -20,7 +20,7 @@ export default function Header({ cart }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className="bg-white fixed w-[99.115vw] top-0 z-10">
-      <div className=" container mx-auto h-[4.5rem] flex items-center justify-between">
+      <div className="container mx-auto h-[4.5rem] flex items-center justify-between">
         <button
           onClick={() => setIsMenuOpen(true)}
           className="flex flex-col items-center text-xs font-semibold"
@@ -30,7 +30,7 @@ export default function Header({ cart }) {
         </button>
 
         <Link to="/" className="h-3/4">
-          <img className="h-full" src={Logo} />
+          <img className="h-full py-0.5" src={Logo} />
         </Link>
 
         {isLaptop && <SearchBar />}
@@ -52,9 +52,11 @@ export default function Header({ cart }) {
         )}
 
         <Link className="relative" to="/cart">
-          <div className="flex items-center justify-center absolute bg-accent text-white h-6 w-6 rounded-full -right-2 -top-2 font-bold">
-            {totalCartQuantity}
-          </div>
+          {totalCartQuantity > 0 && (
+            <div className="flex items-center justify-center absolute bg-accent text-white h-6 w-6 rounded-full -right-2 -top-2 font-bold">
+              {totalCartQuantity}
+            </div>
+          )}
           <FaShoppingCart size={33} />
         </Link>
 
