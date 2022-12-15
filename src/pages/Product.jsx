@@ -7,6 +7,7 @@ import { useState } from "react";
 
 export default function Product({ favorites, cart, setFavorites, setCart }) {
   const [productQuantity, setProductQuantity] = useState(1);
+  const [error, setError] = useState("");
   const { id } = useParams();
   const [products] = EcommerceData();
 
@@ -19,6 +20,9 @@ export default function Product({ favorites, cart, setFavorites, setCart }) {
   const addProduct = () => {
     const cartProduct = cart.find((item) => item.id === currentProduct.id);
     const quantity = +productQuantity;
+
+    if (cartProduct?.quantity + quantity > 9)
+      return setError("Product quantity exceeded");
 
     if (cartProduct) {
       setCart((lastCart) =>
@@ -54,12 +58,15 @@ export default function Product({ favorites, cart, setFavorites, setCart }) {
           </div>
           <p className="font-bold text-3xl">${currentProduct.price}</p>
           <div className="flex my-3 gap-3">
-            <input
-              type="text"
+            <select
+              className="py-1.5 px-3 border border-gray-500 rounded-sm focus-visible:shadow-strong focus-visible:shadow-indigo-500 outline-none"
               value={productQuantity}
               onChange={(e) => setProductQuantity(e.target.value)}
-              className="w-12 rounded-md border border-gray-600 text-center"
-            />
+            >
+              {Array.from(Array(10).keys()).map(
+                (item, index) => index > 0 && <option key={item}>{item}</option>
+              )}
+            </select>
             <button
               onClick={addProduct}
               className="purchase-button add-to-cart-button flex-1"
@@ -74,6 +81,7 @@ export default function Product({ favorites, cart, setFavorites, setCart }) {
               />
             </button>
           </div>
+          <span>{error}</span>
         </div>
       </div>
       <div>

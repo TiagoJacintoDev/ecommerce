@@ -3,7 +3,7 @@ import { MdAccountCircle } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import Logo from "../assets/logo.svg";
 import CategoriesMenu from "./CategoriesMenu";
-import SearchBar from "./SearchBar/SearchBar";
+import SearchBar from "../components/searchBar/SearchBar";
 import { deviceSizes as ds } from "../helpers/variables";
 import { useMediaQuery } from "react-responsive";
 import { useState } from "react";
