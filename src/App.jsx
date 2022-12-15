@@ -26,7 +26,9 @@ export default function App() {
 
   return (
     <div className="pt-24 bg-light-gray">
-      {(!checkoutPath || Object.keys(checkoutPath).length === 0) && <Header />}
+      {(!checkoutPath || Object.keys(checkoutPath).length === 0) && (
+        <Header cart={cart} />
+      )}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route

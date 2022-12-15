@@ -10,7 +10,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 
-export default function Header() {
+export default function Header({ cart }) {
+  const totalCartQuantity = cart.reduce(
+    (preValue, curValue) => preValue + curValue.quantity,
+    0
+  );
   const { user } = UserAuth();
   const isLaptop = useMediaQuery({ query: `(min-width: ${ds.md})` });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,7 +51,10 @@ export default function Header() {
           </Link>
         )}
 
-        <Link to="/cart">
+        <Link className="relative" to="/cart">
+          <div className="flex items-center justify-center absolute bg-accent text-white h-6 w-6 rounded-full -right-2 -top-2 font-bold">
+            {totalCartQuantity}
+          </div>
           <FaShoppingCart size={33} />
         </Link>
 
