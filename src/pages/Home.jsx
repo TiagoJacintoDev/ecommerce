@@ -21,13 +21,13 @@ export default function Home() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
         {categories.data.map((category) => (
           <div
-            className="mt-4 hover:scale-105 transition-transform hover:font-semibold"
+            className="mt-4 hover:scale-105 transition-transform"
             key={category}
           >
             <Link to={`/categories/${category}`}>
               <img
                 key={category}
-                className="aspect-square object-contain"
+                className="aspect-square object-contain min-h-max"
                 src={getRandomProductImageOfCategory(category)}
               />
               <p className="text-center">{lowerFirst(category)}</p>
