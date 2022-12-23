@@ -20,7 +20,7 @@ export default function App() {
   const [addresses, setAddresses] = useLocalStorage("addresses");
   const [boughtProducts, setBoughtProducts] = useLocalStorage("boughtProducts");
 
-  const [shipping, setShipping] = useSessionStorage();
+  const [shipping, setShipping] = useSessionStorage("shipping");
 
   const checkoutPath = useMatch({ path: "/checkout", end: false });
 

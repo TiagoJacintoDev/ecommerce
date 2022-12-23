@@ -27,9 +27,10 @@ export default function Home() {
             <Link to={`/categories/${category}`}>
               <img
                 key={category}
-                className="aspect-square object-contain min-h-max"
+                className="aspect-square object-contain min-h-full"
                 src={getRandomProductImageOfCategory(category)}
               />
+
               <p className="text-center">{upperFirst(category)}</p>
             </Link>
           </div>
@@ -63,9 +64,7 @@ export default function Home() {
                     ${product.price}
                   </span>
                 </Link>
-              ) : (
-                <></>
-              )
+              ) : null
             )}
           </div>
         </div>
