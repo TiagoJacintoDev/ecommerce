@@ -1,18 +1,18 @@
 import { useQueries } from "@tanstack/react-query";
 import { createContext, useContext } from "react";
 import LoadingScreen from "../components/elements/LoadingScreen";
-import { api } from "../services/api";
+import axios from "axios";
 
 const EcommerceContext = createContext();
 
 export default function EcommerceContextProvider({ children }) {
   async function queryCategories() {
-    const response = await api.get("/products/categories");
+    const response = await axios.get("/categoriesApi.json");
     return response.data;
   }
 
   async function queryProducts() {
-    const response = await api.get("products");
+    const response = await axios.get("/productsApi.json");
     return response.data;
   }
 
