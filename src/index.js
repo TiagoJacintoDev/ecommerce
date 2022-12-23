@@ -12,15 +12,17 @@ import { ComposedComponents } from "./components/elements/ComposedComponents";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <ComposedComponents
-    components={[
-      QueryProvider,
-      BrowserRouter,
-      AuthContextProvider,
-      EcommerceContextProvider,
-    ]}
-  >
-    <ScrollToTop />
-    <App />
-  </ComposedComponents>
+  <>
+    <ComposedComponents
+      components={[
+        AuthContextProvider,
+        QueryProvider,
+        EcommerceContextProvider,
+        BrowserRouter,
+      ]}
+    >
+      <ScrollToTop />
+      <App />
+    </ComposedComponents>
+  </>
 );

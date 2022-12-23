@@ -5,7 +5,7 @@ export const getRandomProducts = (products, quantity) => {
     .filter((p, index) => index < quantity);
 };
 
-export const lowerFirst = (string) => {
+export const upperFirst = (string) => {
   return string[0].toUpperCase() + string.slice(1);
 };
 

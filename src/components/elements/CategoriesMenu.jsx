@@ -1,7 +1,7 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { EcommerceData } from "../../context/EcommerceContext";
-import { lowerFirst } from "../../helpers/functions";
+import { upperFirst } from "../../helpers/functions";
 
 export default function CategoriesMenu({ closeMenu }) {
   const [, categories] = EcommerceData();
@@ -21,7 +21,7 @@ export default function CategoriesMenu({ closeMenu }) {
               to={`/categories/${category.toLowerCase()}`}
             >
               <button className="hover:underline hover:text-accent">
-                {lowerFirst(category)}
+                {upperFirst(category)}
               </button>
             </Link>
           </li>

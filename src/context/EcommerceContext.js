@@ -29,8 +29,8 @@ export default function EcommerceContextProvider({ children }) {
     ],
   });
 
-  if (ecommerceData[0].isLoading || ecommerceData[1].isLoading)
-    return <LoadingScreen />;
+  if (ecommerceData[0].isLoading) return <LoadingScreen />;
+  if (ecommerceData[1].isLoading) return <LoadingScreen />;
 
   return (
     <EcommerceContext.Provider value={ecommerceData}>

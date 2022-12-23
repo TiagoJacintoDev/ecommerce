@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { lowerFirst, toLink } from "../helpers/functions";
+import { upperFirst, toLink } from "../helpers/functions";
 import { EcommerceData } from "../context/EcommerceContext";
 import FavoriteButton from "../components/elements/FavoriteButton";
 
@@ -12,7 +12,7 @@ export default function Category({ favorites, setFavorites }) {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-2xl font-bold mb-3">{lowerFirst(category)}</h1>
+      <h1 className="text-2xl font-bold mb-3">{upperFirst(category)}</h1>
       <p className="mb-5">{itemsInCurrentCategory.length} Products Found</p>
       <div className="grid xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
         {itemsInCurrentCategory.map((product) => (

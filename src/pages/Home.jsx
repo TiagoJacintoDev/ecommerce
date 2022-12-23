@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { EcommerceData } from "../context/EcommerceContext";
-import { lowerFirst, toLink } from "../helpers/functions";
+import { upperFirst, toLink } from "../helpers/functions";
 
 export default function Home() {
   const [products, categories] = EcommerceData();
@@ -30,7 +30,7 @@ export default function Home() {
                 className="aspect-square object-contain min-h-max"
                 src={getRandomProductImageOfCategory(category)}
               />
-              <p className="text-center">{lowerFirst(category)}</p>
+              <p className="text-center">{upperFirst(category)}</p>
             </Link>
           </div>
         ))}
@@ -38,7 +38,7 @@ export default function Home() {
       {categories.data.map((category) => (
         <div key={category}>
           <h6 className="mt-8 mb-5 text-xl">
-            {lowerFirst(category)}{" "}
+            {upperFirst(category)}{" "}
             <Link
               to={`/categories/${category}`}
               className="text-accent text-base ml-3"

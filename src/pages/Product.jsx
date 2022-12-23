@@ -73,13 +73,13 @@ export default function Product({ favorites, cart, setFavorites, setCart }) {
             >
               ADD TO CART
             </button>
-            <button className="text-accent hover:text-white flex flex-col justify-center items-center border border-accent rounded-md h-12 w-12 hover:bg-accent">
+            <div className="text-accent hover:text-white flex flex-col justify-center items-center border border-accent rounded-md h-12 w-12 hover:bg-accent">
               <FavoriteButton
                 product={currentProduct}
                 favorites={favorites}
                 setFavorites={setFavorites}
               />
-            </button>
+            </div>
           </div>
           <span>{error}</span>
         </div>
