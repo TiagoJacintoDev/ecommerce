@@ -7,12 +7,12 @@ const EcommerceContext = createContext();
 
 export default function EcommerceContextProvider({ children }) {
   async function queryCategories() {
-    const response = await axios.get("/categoriesApi.json");
+    const response = await axios.get("/data/categoriesApi.json");
     return response.data;
   }
 
   async function queryProducts() {
-    const response = await axios.get("/productsApi.json");
+    const response = await axios.get("/data/productsApi.json");
     return response.data;
   }
 
